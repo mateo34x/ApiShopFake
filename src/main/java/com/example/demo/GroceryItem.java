@@ -15,10 +15,10 @@ public class GroceryItem implements Serializable {
     private int quantity;
     private String category;
 
-    private MultipartFile img;
+    private String img;
 
 
-    public GroceryItem(String id, String name, int quantity, String category, MultipartFile img) {
+    public GroceryItem(String id, String name, int quantity, String category, String img) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -58,11 +58,11 @@ public class GroceryItem implements Serializable {
         this.category = category;
     }
 
-    public MultipartFile getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(MultipartFile img) {
+    public void setImg(String img) {
         this.img = img;
     }
 }

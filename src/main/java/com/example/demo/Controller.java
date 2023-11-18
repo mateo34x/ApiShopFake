@@ -43,33 +43,30 @@ public class Controller {
 
 
 
-    /*@Autowired
-    ItemRepository groceryItemRepo;*/
+   @Autowired
+    ItemRepository groceryItemRepo;
 
 
 
-    /*@GetMapping("/item")
+    @GetMapping("/item")
     public String createGroceryItems() throws IOException {
 
 
 
-        *//*
-        groceryItemRepo.save(new GroceryItem("Kodo Millet", "XYZ Kodo Millet healthy", 2, "millets"));
-        groceryItemRepo.save(new GroceryItem("Dried Red Chilli", "Dried Whole Red Chilli", 2, "spices"));
-        groceryItemRepo.save(new GroceryItem("Pearl Millet", "Healthy Pearl Millet", 1, "millets"));
-        groceryItemRepo.save(new GroceryItem("Cheese Crackers", "Bonny Cheese Crackers Plain", 6, "snacks"));
-        *//*
+
+        groceryItemRepo.save(new GroceryItem("Kodo Millet", "XYZ Kodo Millet healthy", 2, "millets","null"));
+
+
 
         return "Dato guardado";
     }
-*/
 
-    /*@RequestMapping("/findAll")
+    @RequestMapping("/findAll")
     @GetMapping(produces = "application/json")
     public List<GroceryItem> getAllData() {
 
         return groceryItemRepo.findAll();
-    }*/
+    }
 
 
 
