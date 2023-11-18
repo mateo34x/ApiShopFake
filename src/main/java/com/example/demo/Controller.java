@@ -75,7 +75,7 @@ public class Controller {
     @GetMapping("/item")
     public String createGroceryItems() throws IOException {
 
-        groceryItemRepo.save(new GroceryItem("Whole Wheat Biscuit", "Whole Wheat Biscuit", 5, "snacks",subirImagenLocal()));
+        groceryItemRepo.save(new GroceryItem("AdidasOne", "AdidasOne", 1, "shoes",subirImagenLocal()));
         /*
         groceryItemRepo.save(new GroceryItem("Kodo Millet", "XYZ Kodo Millet healthy", 2, "millets"));
         groceryItemRepo.save(new GroceryItem("Dried Red Chilli", "Dried Whole Red Chilli", 2, "spices"));
