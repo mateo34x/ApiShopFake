@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,9 +35,8 @@ public class Controller {
 
     public String subirImagenLocal() throws IOException {
 
-        Path imagePath = Paths.get(localImagesPath, "/root/ApiTest/demo/src/main/resources/static/images/image1.jpeg");
-
-        ObjectId fileId = gridFsTemplate.store(Files.newInputStream(imagePath), "image1.jpg", "image/jpeg");
+        InputStream inputStream = new ClassPathResource("static/image1.jpeg").getInputStream();
+        ObjectId fileId = gridFsTemplate.store(inputStream, "image1.jpeg", "image/jpeg");
         return fileId.toHexString();
     }
 
