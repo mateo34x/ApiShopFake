@@ -59,7 +59,7 @@ public class Controller {
 
          */
 
-        byte[] imageBytes = FileUtils.readFileToByteArray(new File("/root/ApiTest/demo/src/main/resources/static/image1.jpeg"));
+        byte[] imageBytes = FileUtils.readFileToByteArray(new File("static/image1.jpeg"));
         return new Binary(BsonBinarySubType.BINARY, imageBytes);
 
 
