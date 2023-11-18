@@ -35,8 +35,7 @@ public class Controller {
     @Autowired
     private GridFsTemplate gridFsTemplate;
 
-    @Value("${images.local.path}")
-    private String localImagesPath;
+
 
     @Autowired
     ItemRepository groceryItemRepo;
