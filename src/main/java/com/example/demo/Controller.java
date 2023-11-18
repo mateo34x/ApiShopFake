@@ -39,7 +39,7 @@ public class Controller {
         return fileId.toHexString();
     }
 
-    @GetMapping("/create-item")
+    @GetMapping("/item")
     public String createGroceryItems() throws IOException {
 
         groceryItemRepo.save(new GroceryItem("Whole Wheat Biscuit", "Whole Wheat Biscuit", 5, "snacks",subirImagenLocal()));
