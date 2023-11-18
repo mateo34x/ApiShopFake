@@ -65,7 +65,7 @@ public class Controller {
 
             return ResponseEntity.ok()
                     .contentLength(imageStream.available())
-                    .contentType(MediaType.IMAGE_JPEG)
+                    .contentType(MediaType.valueOf("image/jpeg"))
                     .body(resource);
         } catch (IOException e) {
             return ResponseEntity.notFound().build();
