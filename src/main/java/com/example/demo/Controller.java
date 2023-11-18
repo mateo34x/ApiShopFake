@@ -1,22 +1,24 @@
 package com.example.demo;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mongodb.client.gridfs.model.GridFSFile;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;;
 import java.util.List;
+
+import static org.springframework.data.mongodb.core.query.Query.query;
 
 @RestController
 @RequestMapping("/create")
@@ -38,6 +40,36 @@ public class Controller {
         InputStream inputStream = new ClassPathResource("static/image1.jpeg").getInputStream();
         ObjectId fileId = gridFsTemplate.store(inputStream, "image1.jpeg", "image/jpeg");
         return fileId.toHexString();
+    }
+
+    public InputStream Consultar(String imageId) throws IOException {
+
+        GridFSFile gridFsFile = gridFsTemplate.findOne(query(Criteria.where("_id").is(new ObjectId(imageId))));
+
+        if (gridFsFile == null) {
+            throw new FileNotFoundException("No se encontró la imagen con ID: " + imageId);
+        }
+
+        // Obtener el recurso GridFS usando el archivo
+        GridFsResource gridFsResource = gridFsTemplate.getResource(gridFsFile);
+
+        return gridFsResource.getInputStream();
+    }
+
+    @GetMapping("/imagen/{imageId}")
+    public ResponseEntity<InputStreamResource> obtenerImagen(@PathVariable String imageId) {
+        try {
+            InputStream imageStream = Consultar(imageId);
+
+            InputStreamResource resource = new InputStreamResource(imageStream);
+
+            return ResponseEntity.ok()
+                    .contentLength(imageStream.available())
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(resource);
+        } catch (IOException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/item")
