@@ -1,21 +1,24 @@
 package com.example.demo;
 
-import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.Serializable;
 
 @Document("groceryitems")
-public class GroceryItem {
+public class GroceryItem implements Serializable {
 
     @Id
     private String id;
     private String name;
     private int quantity;
     private String category;
-    private Binary img;
+
+    private MultipartFile img;
 
 
-    public GroceryItem(String id, String name, int quantity, String category, Binary img) {
+    public GroceryItem(String id, String name, int quantity, String category, MultipartFile img) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -55,11 +58,11 @@ public class GroceryItem {
         this.category = category;
     }
 
-    public Binary getImg() {
+    public MultipartFile getImg() {
         return img;
     }
 
-    public void setImg(Binary img) {
+    public void setImg(MultipartFile img) {
         this.img = img;
     }
 }
