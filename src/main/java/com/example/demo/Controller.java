@@ -29,10 +29,18 @@ public class Controller {
     }*/
 
 
-    @GetMapping(produces = "application/json")
+    /*@GetMapping(produces = "application/json")
     @ResponseBody
     public List<GroceryItem> getAllData() {
 
         return groceryItemRepo.findAll();
+    }*/
+
+
+    @GetMapping()
+    @ResponseBody
+    public String getAllData() {
+
+        return "groceryItemRepo.findAll()";
     }
 }
