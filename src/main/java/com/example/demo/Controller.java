@@ -26,7 +26,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 ;
 
-@RestController
+@org.springframework.stereotype.Controller
 @RequestMapping("/create")
 public class Controller {
 
