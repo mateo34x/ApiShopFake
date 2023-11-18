@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -33,10 +36,8 @@ public class Controller {
     private GridFsTemplate gridFsTemplate;
 
 
-
     @Autowired
     ItemRepository groceryItemRepo;
-
 
 
     public Binary subirImagenLocal() throws IOException {
@@ -59,8 +60,6 @@ public class Controller {
         File imageFile = new File("static/image1.jpeg");
         byte[] imageBytes = FileUtils.readFileToByteArray(imageFile);
         return new Binary(BsonBinarySubType.BINARY, imageBytes);
-
-
 
 
     }
@@ -104,7 +103,7 @@ public class Controller {
 
         Binary imgBinary = new Binary(imageBytes);
 
-        groceryItemRepo.save(new GroceryItem("AdidasTwo", "AdidasTwo", 1, "shoes",imgBinary));
+        groceryItemRepo.save(new GroceryItem("AdidasTwo", "AdidasTwo", 1, "shoes", imgBinary));
         /*
         groceryItemRepo.save(new GroceryItem("Kodo Millet", "XYZ Kodo Millet healthy", 2, "millets"));
         groceryItemRepo.save(new GroceryItem("Dried Red Chilli", "Dried Whole Red Chilli", 2, "spices"));
@@ -112,7 +111,7 @@ public class Controller {
         groceryItemRepo.save(new GroceryItem("Cheese Crackers", "Bonny Cheese Crackers Plain", 6, "snacks"));
         */
 
-       return "Dato guardado";
+        return "Dato guardado";
     }
 
 
@@ -125,11 +124,14 @@ public class Controller {
 
 
     private byte[] cargarContenidoImagen(String imagePath) throws IOException {
-        try (FileInputStream fis = new FileInputStream(imagePath)) {
-            byte[] buffer = new byte[fis.available()];
-            fis.read(buffer);
-            return buffer;
+        Path path = Paths.get(imagePath);
+
+        try {
+            return Files.readAllBytes(path);
+        } catch (IOException e) {
+            throw new IOException("Error al cargar el contenido de la imagen", e);
         }
+
     }
 
 
