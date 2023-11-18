@@ -30,41 +30,10 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @RequestMapping("/create")
 public class Controller {
 
-    @Autowired
-    private GridFsTemplate gridFsTemplate;
-
-
-    @Autowired
-    ItemRepository groceryItemRepo;
 
 
 
-    @GetMapping("/item")
-    public String createGroceryItems() throws IOException {
-
-
-
-        /*
-        groceryItemRepo.save(new GroceryItem("Kodo Millet", "XYZ Kodo Millet healthy", 2, "millets"));
-        groceryItemRepo.save(new GroceryItem("Dried Red Chilli", "Dried Whole Red Chilli", 2, "spices"));
-        groceryItemRepo.save(new GroceryItem("Pearl Millet", "Healthy Pearl Millet", 1, "millets"));
-        groceryItemRepo.save(new GroceryItem("Cheese Crackers", "Bonny Cheese Crackers Plain", 6, "snacks"));
-        */
-
-        return "Dato guardado";
-    }
-
-
-    @RequestMapping("/findAll")
-    @GetMapping(produces = "application/json")
-    public List<GroceryItem> getAllData() {
-
-        return groceryItemRepo.findAll();
-    }
-
-
-    @PostMapping("/api/groceryitems/uploadImage")
-    @Autowired
+    @PostMapping()
     public String handleImageUpload(@RequestParam("file") MultipartFile file) {
         // Aquí puedes guardar la imagen en el sistema de archivos o en una base de datos, según tus necesidades
         // También puedes asociar la imagen con un GroceryItem específico
@@ -73,6 +42,40 @@ public class Controller {
 
         return "Image uploaded successfully!";
     }
+
+
+
+
+    /*@Autowired
+    ItemRepository groceryItemRepo;*/
+
+
+
+    /*@GetMapping("/item")
+    public String createGroceryItems() throws IOException {
+
+
+
+        *//*
+        groceryItemRepo.save(new GroceryItem("Kodo Millet", "XYZ Kodo Millet healthy", 2, "millets"));
+        groceryItemRepo.save(new GroceryItem("Dried Red Chilli", "Dried Whole Red Chilli", 2, "spices"));
+        groceryItemRepo.save(new GroceryItem("Pearl Millet", "Healthy Pearl Millet", 1, "millets"));
+        groceryItemRepo.save(new GroceryItem("Cheese Crackers", "Bonny Cheese Crackers Plain", 6, "snacks"));
+        *//*
+
+        return "Dato guardado";
+    }
+*/
+
+    /*@RequestMapping("/findAll")
+    @GetMapping(produces = "application/json")
+    public List<GroceryItem> getAllData() {
+
+        return groceryItemRepo.findAll();
+    }*/
+
+
+
 
 
 
