@@ -11,13 +11,15 @@ public class GroceryItem {
     private String name;
     private int quantity;
     private String category;
+    private String img;
 
 
-    public GroceryItem(String id, String name, int quantity, String category) {
+    public GroceryItem(String id, String name, int quantity, String category, String img) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.category = category;
+        this.img = img;
     }
 
     public String getId() {
@@ -50,5 +52,13 @@ public class GroceryItem {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
