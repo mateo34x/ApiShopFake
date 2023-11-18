@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -101,7 +98,13 @@ public class Controller {
     @GetMapping("/item")
     public String createGroceryItems() throws IOException {
 
-        groceryItemRepo.save(new GroceryItem("AdidasTwo", "AdidasTwo", 1, "shoes",subirImagenLocal()));
+        String imagePath = "static/image1.jpeg";
+
+        byte[] imageBytes = cargarContenidoImagen(imagePath);
+
+        Binary imgBinary = new Binary(imageBytes);
+
+        groceryItemRepo.save(new GroceryItem("AdidasTwo", "AdidasTwo", 1, "shoes",imgBinary));
         /*
         groceryItemRepo.save(new GroceryItem("Kodo Millet", "XYZ Kodo Millet healthy", 2, "millets"));
         groceryItemRepo.save(new GroceryItem("Dried Red Chilli", "Dried Whole Red Chilli", 2, "spices"));
@@ -118,6 +121,15 @@ public class Controller {
     public List<GroceryItem> getAllData() {
 
         return groceryItemRepo.findAll();
+    }
+
+
+    private byte[] cargarContenidoImagen(String imagePath) throws IOException {
+        try (FileInputStream fis = new FileInputStream(imagePath)) {
+            byte[] buffer = new byte[fis.available()];
+            fis.read(buffer);
+            return buffer;
+        }
     }
 
 
