@@ -64,6 +64,7 @@ public class Controller {
 
 
     @PostMapping("/api/groceryitems/uploadImage")
+    @Autowired
     public String handleImageUpload(@RequestParam("file") MultipartFile file) {
         // Aquí puedes guardar la imagen en el sistema de archivos o en una base de datos, según tus necesidades
         // También puedes asociar la imagen con un GroceryItem específico
