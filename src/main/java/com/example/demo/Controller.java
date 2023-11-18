@@ -33,9 +33,9 @@ public class Controller {
 
     public String subirImagenLocal() throws IOException {
 
-        Path imagePath = Paths.get(localImagesPath, "image1");
+        Path imagePath = Paths.get(localImagesPath, "/root/ApiTest/demo/src/main/resources/static/images/image1.jpeg");
 
-        ObjectId fileId = gridFsTemplate.store(Files.newInputStream(imagePath), "image1", "image/jpeg");
+        ObjectId fileId = gridFsTemplate.store(Files.newInputStream(imagePath), "image1.jpg", "image/jpeg");
         return fileId.toHexString();
     }
 
