@@ -33,15 +33,12 @@ public class Controller {
 
 
 
-    @PostMapping()
-    public String handleImageUpload(@RequestParam("file") MultipartFile file) {
-        // Aquí puedes guardar la imagen en el sistema de archivos o en una base de datos, según tus necesidades
-        // También puedes asociar la imagen con un GroceryItem específico
-        // Retorna la URL de la imagen o cualquier otra información relevante
 
-
-        return "Image uploaded successfully!";
+    @GetMapping("/showForm")
+    public String showImageUploadForm() {
+        return "groceryItemFrom";
     }
+
 
 
 
