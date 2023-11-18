@@ -59,7 +59,8 @@ public class Controller {
 
          */
 
-        byte[] imageBytes = FileUtils.readFileToByteArray(new File("static/image1.jpeg"));
+        File imageFile = new File("static/image1.jpeg");
+        byte[] imageBytes = new byte[(int) imageFile.length()];
         return new Binary(BsonBinarySubType.BINARY, imageBytes);
 
 
