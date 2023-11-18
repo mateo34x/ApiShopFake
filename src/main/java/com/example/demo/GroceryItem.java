@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import jdk.incubator.vector.VectorOperators;
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,10 +13,10 @@ public class GroceryItem {
     private String name;
     private int quantity;
     private String category;
-    private String img;
+    private Binary img;
 
 
-    public GroceryItem(String id, String name, int quantity, String category, String img) {
+    public GroceryItem(String id, String name, int quantity, String category, Binary img) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -54,11 +56,11 @@ public class GroceryItem {
         this.category = category;
     }
 
-    public String getImg() {
+    public Binary getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(Binary img) {
         this.img = img;
     }
 }
