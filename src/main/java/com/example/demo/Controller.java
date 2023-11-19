@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -27,16 +28,16 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 ;
 
 @org.springframework.stereotype.Controller
-@RequestMapping(path = "/")
+@RequestMapping(path = "/create")
 public class Controller {
 
 
 
 
 
-    @GetMapping("/showForm")
-    public String showImageUploadForm() {
-        return "groceryItemFrom";
+    @GetMapping(value ="/newcar")
+    public ModelAndView form() {
+        return new ModelAndView();
     }
 
 
