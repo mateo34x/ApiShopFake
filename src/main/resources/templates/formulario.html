@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Formulario para crear un GroceryItem</h1>
-<form action="/guardar" method="POST">
+<form action="/guardar" method="POST" enctype="multipart/form-data">
     <label for="id">ID:</label>
     <input type="text" id="id" name="id"><br><br>
 
@@ -19,7 +19,7 @@
     <input type="text" id="category" name="category"><br><br>
 
     <label for="img">Imagen:</label>
-    <input type="file" id="img" name="img"><br><br>
+    <input type="file" id="img" name="img" accept="image/*"><br><br>
 
     <input type="submit" value="Guardar">
 </form>

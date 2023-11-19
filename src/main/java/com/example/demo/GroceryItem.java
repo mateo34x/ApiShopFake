@@ -1,7 +1,9 @@
 package com.example.demo;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 
 @Document("groceryitems")
@@ -13,17 +15,22 @@ public class GroceryItem implements Serializable {
     private int quantity;
     private String category;
 
-    private String img;
+
+    private String nombre;
+    private String mimeType;
+    private String fotoBase64;
 
     public GroceryItem() {
     }
 
-    public GroceryItem(String id, String name, int quantity, String category, String img) {
+    public GroceryItem(String id, String name, int quantity, String category, String nombre, String mimeType, String fotoBase64) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.category = category;
-        this.img = img;
+        this.mimeType = mimeType;
+        this.nombre = nombre;
+        this.fotoBase64 = fotoBase64;
     }
 
     public String getId() {
@@ -58,11 +65,27 @@ public class GroceryItem implements Serializable {
         this.category = category;
     }
 
-    public String getImg() {
-        return img;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    public String getFotoBase64() {
+        return fotoBase64;
+    }
+
+    public void setFotoBase64(String fotoBase64) {
+        this.fotoBase64 = fotoBase64;
     }
 }
