@@ -2,8 +2,6 @@ package com.example.demo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.Serializable;
 
 @Document("groceryitems")
@@ -17,6 +15,8 @@ public class GroceryItem implements Serializable {
 
     private String img;
 
+    public GroceryItem() {
+    }
 
     public GroceryItem(String id, String name, int quantity, String category, String img) {
         this.id = id;
