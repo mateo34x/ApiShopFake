@@ -19,6 +19,7 @@ public class GroceryItemController {
     @PostMapping("/guardar")
     public String guardarGroceryItem(@RequestParam("id") String id,
                                      @RequestParam("name") String name,
+                                     @RequestParam("descripcion") String descripcion,
                                      @RequestParam("quantity") int quantity,
                                      @RequestParam("category") String category,
                                      @RequestParam("img") MultipartFile img) throws IOException {
@@ -27,7 +28,8 @@ public class GroceryItemController {
         byte[] bytes = img.getBytes();
         String encodedString = Base64.getEncoder().encodeToString(bytes);
 
-        groceryItemRepo.save(new GroceryItem(id,name,quantity,category, img.getName(),img.getContentType(),encodedString ));
+        groceryItemRepo.save(new GroceryItem(id,name,descripcion,quantity,category, img.getName(),img.getContentType(),encodedString ));
+        System.out.println(img.getContentType());
 
 
         return "redirect:/view/findAll"; // Redirige a la página del formulario después de guardar los datos

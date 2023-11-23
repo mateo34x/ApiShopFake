@@ -12,10 +12,9 @@ public class GroceryItem implements Serializable {
     @Id
     private String id;
     private String name;
+    private String description;
     private int quantity;
     private String category;
-
-
     private String nombre;
     private String mimeType;
     private String fotoBase64;
@@ -23,8 +22,9 @@ public class GroceryItem implements Serializable {
     public GroceryItem() {
     }
 
-    public GroceryItem(String id, String name, int quantity, String category, String nombre, String mimeType, String fotoBase64) {
+    public GroceryItem(String id, String name,String description, int quantity, String category, String nombre, String mimeType, String fotoBase64) {
         this.id = id;
+        this.description = description;
         this.name = name;
         this.quantity = quantity;
         this.category = category;
@@ -47,6 +47,14 @@ public class GroceryItem implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getQuantity() {
@@ -87,5 +95,19 @@ public class GroceryItem implements Serializable {
 
     public void setFotoBase64(String fotoBase64) {
         this.fotoBase64 = fotoBase64;
+    }
+
+    @Override
+    public String toString() {
+        return "GroceryItem{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", mimeType='" + mimeType + '\'' +
+                ", fotoBase64='" + fotoBase64 + '\'' +
+                '}';
     }
 }
