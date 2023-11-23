@@ -13,6 +13,7 @@ public class GroceryItem implements Serializable {
     private String id;
     private String name;
     private String description;
+    private String price;
     private int quantity;
     private String category;
     private String nombre;
@@ -22,9 +23,10 @@ public class GroceryItem implements Serializable {
     public GroceryItem() {
     }
 
-    public GroceryItem(String id, String name,String description, int quantity, String category, String nombre, String mimeType, String fotoBase64) {
+    public GroceryItem(String id, String name,String description,String price, int quantity, String category, String nombre, String mimeType, String fotoBase64) {
         this.id = id;
         this.description = description;
+        this.price = price;
         this.name = name;
         this.quantity = quantity;
         this.category = category;
@@ -55,6 +57,14 @@ public class GroceryItem implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public int getQuantity() {
@@ -103,6 +113,7 @@ public class GroceryItem implements Serializable {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", price='" + price + '\'' +
                 ", quantity=" + quantity +
                 ", category='" + category + '\'' +
                 ", nombre='" + nombre + '\'' +
