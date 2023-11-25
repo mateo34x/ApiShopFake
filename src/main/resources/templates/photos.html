@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>View Photo</h1>
-<img th:src="@{'data:'+${foto.getMimeType()}+';base64,'+${foto.getFotoBase64()}}" alt="sample" />
+<img th:src="@{'data:'+${foto.getMimeType()}+';base64,'+${foto.getFotoBase1()}}" alt="sample" />
+<img th:src="@{'data:'+${foto.getMimeType()}+';base64,'+${foto.getFotoBase2()}}" alt="sample" />
 </body>
 </html>
 

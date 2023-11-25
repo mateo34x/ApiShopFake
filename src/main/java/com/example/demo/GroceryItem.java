@@ -18,12 +18,13 @@ public class GroceryItem implements Serializable {
     private String category;
     private String nombre;
     private String mimeType;
-    private String fotoBase64;
+    private String fotoBase1;
+    private String fotoBase2;
 
     public GroceryItem() {
     }
 
-    public GroceryItem(String id, String name,String description,String price, int quantity, String category, String nombre, String mimeType, String fotoBase64) {
+    public GroceryItem(String id, String name,String description,String price, int quantity, String category, String nombre, String mimeType, String fotoBase1, String fotoBase2) {
         this.id = id;
         this.description = description;
         this.price = price;
@@ -32,7 +33,8 @@ public class GroceryItem implements Serializable {
         this.category = category;
         this.mimeType = mimeType;
         this.nombre = nombre;
-        this.fotoBase64 = fotoBase64;
+        this.fotoBase1 = fotoBase1;
+        this.fotoBase2 = fotoBase2;
     }
 
     public String getId() {
@@ -99,12 +101,20 @@ public class GroceryItem implements Serializable {
         this.mimeType = mimeType;
     }
 
-    public String getFotoBase64() {
-        return fotoBase64;
+    public String getFotoBase1() {
+        return fotoBase1;
     }
 
-    public void setFotoBase64(String fotoBase64) {
-        this.fotoBase64 = fotoBase64;
+    public void setFotoBase1(String fotoBase1) {
+        this.fotoBase1 = fotoBase1;
+    }
+
+    public String getFotoBase2() {
+        return fotoBase2;
+    }
+
+    public void setFotoBase2(String fotoBase2) {
+        this.fotoBase2 = fotoBase2;
     }
 
     @Override
@@ -118,7 +128,8 @@ public class GroceryItem implements Serializable {
                 ", category='" + category + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", mimeType='" + mimeType + '\'' +
-                ", fotoBase64='" + fotoBase64 + '\'' +
+                ", fotoBase1='" + fotoBase1 + '\'' +
+                ", fotoBase2'" + fotoBase2 + '\''+
                 '}';
     }
 }
