@@ -62,7 +62,7 @@ public class GroceryItemController {
             groceryItem.setFotoBase1(encodedString);
             groceryItem.setFotoBase2(encodedString2);
 
-            return "Edited ok";
+            return "redirect:/photos/"+optional.get().getName();
         }else{
             return "Document with "+id+ " not found, try again";
         }
