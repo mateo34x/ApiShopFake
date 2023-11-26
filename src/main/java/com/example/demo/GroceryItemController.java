@@ -3,6 +3,7 @@ package com.example.demo;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,9 @@ public class GroceryItemController {
 
     @Autowired
     ItemRepository groceryItemRepo;
+
+    @Autowired
+    private CloudinaryService cloudinaryService;
     @PostMapping("/guardar")
     public String guardarGroceryItem(@RequestParam("id") String id,
                                      @RequestParam("name") String name,
@@ -28,15 +32,27 @@ public class GroceryItemController {
                                      @RequestParam("img2") MultipartFile img2) throws IOException {
 
 
-        byte[] bytes = img1.getBytes();
+        /*byte[] bytes = img1.getBytes();
         String encodedString = Base64.getEncoder().encodeToString(bytes);
 
         byte[] bytes2 = img2.getBytes();
-        String encodedString2 = Base64.getEncoder().encodeToString(bytes2);
+        String encodedString2 = Base64.getEncoder().encodeToString(bytes2);*/
 
-        groceryItemRepo.save(new GroceryItem(id,name,descripcion,"$"+price,quantity,category, img1.getName(),img1.getContentType(),encodedString,encodedString2 ));
 
-        return "redirect:/view/findAll"; // Redirige a la página del formulario después de guardar los datos
+        try {
+            String imageUrl1 = cloudinaryService.uploadFile(img1);
+            String imageUrl2 = cloudinaryService.uploadFile(img2);
+
+            groceryItemRepo.save(new GroceryItem(id,name,descripcion,"$"+price,quantity,category, img1.getName(),img1.getContentType(),imageUrl1,imageUrl2 ));
+
+            return "redirect:/view/findAll";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+
+
     }
 
     @PostMapping("/edit")
