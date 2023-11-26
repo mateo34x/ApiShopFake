@@ -19,6 +19,11 @@ public class NewController {
         return "formulario";
     }
 
+    @GetMapping("/edit")
+    public String mostrarEdit() {
+        return "EditDocument";
+    }
+
 
     public GroceryItem getImage(String id) {
         return groceryItemRepo.findItemByName(id);

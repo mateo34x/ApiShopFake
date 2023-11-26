@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Image item</title></head>
+<body>
+
+<form action="/edit" method="POST" enctype="multipart/form-data">
+
+    <label for="id">ID item:</label>
+    <input type="text" id="id" name="id"><br><br>
+
+    <label for="img1">Imagen1:</label>
+    <input type="file" id="img1" name="img1" accept="image/*"><br><br>
+
+    <label for="img2">Imagen2:</label>
+    <input type="file" id="img2" name="img2" accept="image/*"><br><br>
+
+    <input type="submit" value="edit">
+</form>
+
+</body>
+</html>
