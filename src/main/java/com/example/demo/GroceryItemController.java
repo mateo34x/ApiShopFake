@@ -61,6 +61,7 @@ public class GroceryItemController {
             GroceryItem groceryItem = optional.get();
             groceryItem.setFotoBase1(encodedString);
             groceryItem.setFotoBase2(encodedString2);
+            groceryItemRepo.save(groceryItem);
 
             return "redirect:/photos/"+optional.get().getName();
         }else{
