@@ -65,24 +65,24 @@ public class GroceryItemController {
 
         Optional<GroceryItem> optional = groceryItemRepo.findById(id);
 
-        if (optional.isPresent()){
-
-            byte[] bytes = img1.getBytes();
-            String encodedString = Base64.getEncoder().encodeToString(bytes);
-
-            byte[] bytes2 = img2.getBytes();
-            String encodedString2 = Base64.getEncoder().encodeToString(bytes2);
+        if (optional.isPresent()) {
 
 
-            GroceryItem groceryItem = optional.get();
-            groceryItem.setFotoBase1(encodedString);
-            groceryItem.setFotoBase2(encodedString2);
-            groceryItemRepo.save(groceryItem);
 
-            return "redirect:/photos/"+optional.get().getName();
-        }else{
-            return "Document with "+id+ " not found, try again";
+                String imageUrl1 = cloudinaryService.uploadFile(img1);
+                String imageUrl2 = cloudinaryService.uploadFile(img2);
+
+                GroceryItem groceryItem = optional.get();
+                groceryItem.setFotoBase1(imageUrl1);
+                groceryItem.setFotoBase2(imageUrl2);
+                groceryItemRepo.save(groceryItem);
+
+                return "redirect:/photos/" + optional.get().getName();
+
         }
+        return "";
+
+
     }
 
 

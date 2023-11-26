@@ -33,15 +33,13 @@ public class CloudinaryService {
 
 
     public String uploadFile(MultipartFile file) throws IOException {
-        // Subir la imagen a Cloudinary
-        Map<?, ?> result = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
 
-        // Devolver la URL de la imagen en Cloudinary
+        Map<?, ?> result = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
         return (String) result.get("secure_url");
+
     }
 
     public void deleteFile(String publicId) throws IOException {
-        // Eliminar la imagen de Cloudinary
         cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
     }
 }
