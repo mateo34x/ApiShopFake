@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Registry</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <!---->
+
+</head>
+
+
+
+
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="#">
+
+            <h1>Crear Cuenta</h1>
+            <div class="social-container">
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+            <span style="margin-top:-20px">or use your email for registration</span>
+
+            <div style="margin-top:10px" class="group">
+
+
+
+                <div class="input-container">
+                    <label for="textNameR"></label><input type="text" placeholder="@name" id="textNameR" class="input" oninput="validateFormR()"/>
+
+                </div>
+
+            </div>
+            <div class="group">
+
+
+                <div class="input-container">
+                    <label for="textEmailR"></label><input type="email" placeholder="name@gmail.com" id="textEmailR" class="input" oninput="validateFormR()"/>
+                </div>
+
+
+
+            </div>
+            <div class="group">
+
+                <div class="input-container">
+                    <label for="textPassR"></label><input type="password" placeholder="Password" id="textPassR" class="input" oninput="validateFormR()"/>
+                </div>
+
+
+            </div>
+
+            <button class="Btn" id="btnRegis" oninput="validateFormR()">
+
+                <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    </svg>
+                </div>
+
+                <div class="text">Crear</div>
+            </button>
+
+            <div class="end">
+                <span class="txt2">
+                    Do you have an account?
+                </span>
+                <a href="#" id="signIn" class="txt2 bo1">
+                    Sign In now
+                </a>
+
+
+            </div>
+
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="#">
+            <h1>Nos gusta verte otra vez!</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <span style="margin-bottom: 12px;">or use your account</span>
+
+            <div class="group">
+
+
+
+                <div class="input-container">
+                    <label for="textEmail"></label><input type="email" placeholder="name@gmail.com" id="textEmail" class="input" oninput="validateForm()"/>
+                </div>
+
+
+            </div>
+
+            <div class="group">
+                <div class="input-container">
+                    <label for="textPass"></label><input type="password" placeholder="Password" id="textPass" class="input" oninput="validateForm()"/>
+                </div>
+
+
+            </div>
+
+
+
+
+            <button class="Btn" id="btnLogin" oninput="validateForm()">
+
+                <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    </svg>
+                </div>
+
+                <div class="text">Iniciar</div>
+            </button>
+
+
+            <div class="end">
+                <span class="txt2">
+                    Not a member?
+                </span>
+                <a href="#" id="signUp" class="txt2 bo1">
+                    Sign up now
+                </a>
+
+
+            </div>
+
+
+
+
+        </form>
+
+
+
+
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+
+                <img class="im" width="410"
+                     src="https://i.pinimg.com/564x/11/08/2c/11082c395a831ef109f1b657289298b5.jpg">
+
+            </div>
+            <div class="overlay-panel overlay-right">
+                <img class="im" width="400"
+                     src="https://res.cloudinary.com/dtljcfmr3/image/upload/v1701396857/WhatsApp_Image_2023-11-20_at_9.19.01_PM-removebg-preview_1_phyhcq.png" alt="image">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="toast">
+    <div class="toast_content">
+        <div class="message">
+            <span class="txt txt-1">Welcome</span>
+            <span class="txt txt-2">Registration successfully</span>
+        </div>
+    </div>
+
+    <div class="progress"></div>
+</div>
+
+<body>
+
+
+
+<script src="../static/css/javaS.js" th:src="@{/css/javaS.js}"></script>
+<script defer src="https://use.fontawesome.com/releases/v6.5.1/js/all.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
