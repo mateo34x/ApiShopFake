@@ -6,6 +6,7 @@
 }
 
 body {
+
     background: #000000;
     display: flex;
     align-item :center;
@@ -479,48 +480,55 @@ input:-webkit-autofill:focus {
 
 
 
-
 .toast{
 
-    border-radius: 10px;
-    background: #fff;
-    visibility: hidden;
-    padding: 20px 25px 20px 25px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    border-left: 6px solid #57c069;
-    transition: all 0.5s ease;
-    transform: translateX(calc(210% + 290px));
-    overflow:hidden;
+
+
+    position: absolute;
+        top: 10px;
+        right: 3px;
+        border-radius: 12px;
+        background: #fff;
+        padding: 20px 35px 20px 25px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        border-left: 6px solid #57c069;
+        overflow: hidden;
+        transform: translateX(calc(100% + 30px));
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+
+
+
+
 }
 
 .toast.active{
-    transform: translateX(200%);
-    visibility: visible;
+    transform: translateX(0%);
+
 }
 
-.toas_content{
+.toast_content{
     display: flex;
     align-items: center;
 }
 
 
-.toas_content .check{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20px;
-    width: 20px;
-    background: #57c069;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 50%;
+.toast_content .check{
+     display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        width: 30px;
+        background-color: #57c069;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 50%;
 }
 
 
 .toast_content .message{
     display: flex;
     flex-direction: column;
-    margin: 0 17px;
+    margin: 0 20px;
 
 }
 
@@ -538,12 +546,12 @@ input:-webkit-autofill:focus {
 
 
 .toast .close{
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    padding: 5px;
-    cursor: pointer;
-    opacity: 0.7;
+   position: absolute;
+       top: 10px;
+       right: 15px;
+       padding: 5px;
+       cursor: pointer;
+       opacity: 0.7;
 
 }
 
@@ -554,20 +562,21 @@ input:-webkit-autofill:focus {
 
 .toast .progress{
     position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-    background: #ddd;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 100%;
+        background: #ddd;
 
 }
 
 .toast .progress:before{
-    content: "";
+
+content: '';
     position: absolute;
     bottom: 0;
     right: 0;
-    height: 5px;
+    height: 100%;
     width: 100%;
     background: #57c069;
 
@@ -582,6 +591,91 @@ input:-webkit-autofill:focus {
 right:100%;
 }
 
+}
+
+
+
+
+.toast_error{
+   position: absolute;
+           top: 10px;
+           right: 3px;
+           border-radius: 12px;
+           background: #fff;
+           padding: 20px 35px 20px 25px;
+           box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+           border-left: 6px solid #c05757;
+           overflow: hidden;
+           transform: translateX(calc(100% + 30px));
+           transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+
+
+
+}
+
+.toast_error.active{
+    transform: translateX(0%);
+}
+
+.toast_content .error{
+     display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        width: 30px;
+        background-color: #c05757;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 50%;
+}
+
+
+.toast_error .close{
+   position: absolute;
+       top: 10px;
+       right: 15px;
+       padding: 5px;
+       cursor: pointer;
+       opacity: 0.7;
+
+}
+
+.toast_error .close:hover{
+    opacity: 1;
+
+}
+
+.toast_error .progressError{
+    position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 100%;
+        background: #ddd;
+
+}
+
+
+
+.toast_error .progressError:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 5px;
+    width: 100%;
+    background: #c05757;
+
+}
+
+
+.progressError.active::before{
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progressError{
+100%{
+right:100%;
 }
 
 

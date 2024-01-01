@@ -1,0 +1,35 @@
+.aks-input[type="text"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 42%;
+  border-radius: 7px;
+  padding: 8px 10px;
+  margin-top:30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: unset;
+  position: relative;
+  margin-left:-12px;
+  cursor: pointer;
+  border: 0.1rem solid #bbc1e1;
+  background: #fff;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.aks-input[type="text"]:hover {
+  border-color: white;
+}
+.aks-input[type="text"]:focus {
+
+}
+
+
+
+.price{
+margin-left:20px;
+width:18%;
+margin-top:30px;
+border-radius: 7px;
+border: 0.1rem solid #bbc1e1;
+}

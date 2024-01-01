@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.Base64;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class NewController {
@@ -16,7 +15,17 @@ public class NewController {
 
     @GetMapping("/formulario")
     public String mostrarFormulario() {
-        return "formulario";
+        return "formtest";
+    }
+
+    @GetMapping("/dataDash")
+    public String dataDash() {
+        return "dashboarddata";
+    }
+
+    @GetMapping("/TokenExp")
+    public String Exist() {
+        return "Exist";
     }
 
     @GetMapping("/edit")
@@ -34,4 +43,6 @@ public class NewController {
         model.addAttribute("foto", getImage(id));
         return "photos";
     }
+
+
 }

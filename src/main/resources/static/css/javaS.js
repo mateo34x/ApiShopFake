@@ -4,14 +4,21 @@ const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
 const container = document.getElementById("container");
 
+signUpButton.addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+});
 
 
 
 
 
 function validateForm() {
-    var textE = document.getElementById("textEmail").value
-    var textP = document.getElementById("textPass").value
+    var textE = document.getElementById("inputEmail").value
+    var textP = document.getElementById("inputPassword").value
     var btnL= document.getElementById("btnLogin")
 
 
@@ -40,12 +47,11 @@ function validateForm() {
 }
 
 function validateFormR() {
-    var textNR = document.getElementById("textNameR").value
-    var textER = document.getElementById("textEmailR").value
-    var textPR = document.getElementById("textPassR").value
+    var textNR = document.getElementById("name").value
+    var textER = document.getElementById("email").value
+    var textPR = document.getElementById("password").value
     var btnLR= document.getElementById("btnRegis")
-    const toastEL = document.querySelector(".toast");
-    const proEL = document.querySelector(".progress");
+
 
 
     if ( comienzaConArroba(textNR) && textNR.length >= 5  && isValidEmail(textER) && textPR.length >= 8 && btnLR.style.display === "none") {
@@ -56,15 +62,7 @@ function validateFormR() {
 
         }, 10);
 
-        btnLR.addEventListener('click',() =>{
-                toastEL.classList.add("active");
-                proEL.classList.add("active");
 
-                setTimeout(function(){
-                    toastEL.classList.remove("active");
-                     proEL.classList.remove("active");
-                },5000)
-        });
 
 
 
@@ -91,16 +89,80 @@ function comienzaConArroba(input) {
 
 
 
-signUpButton.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-});
-
-signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-});
 
 
 
+
+
+
+document.getElementById('iniciar').addEventListener('keydown', function(event) {
+
+      if (event.key === 'Enter') {
+
+        event.preventDefault();
+
+      }
+    });
+
+
+document.getElementById('registro').addEventListener('keydown', function(event) {
+
+      if (event.key === 'Enter') {
+
+        event.preventDefault();
+
+      }
+    });
+
+
+    var successElement = document.querySelector('[data-success]');
+    var errorElement = document.querySelector('[data-error]');
+    var errorElementEmail = document.querySelector('[data-email]');
+
+    const toastEL = document.querySelector(".toast");
+    const toastER = document.querySelector(".toast_error");
+    const proEL = document.querySelector(".progress");
+    const proER = document.querySelector(".progressError");
+
+
+    var isSuccess = successElement && successElement.getAttribute('data-success') === 'true';
+    var isError = errorElement && errorElement.getAttribute('data-error') === 'true';
+    var isEmailError = errorElementEmail && errorElementEmail.getAttribute('data-email') === 'true';
+
+    if (isSuccess) {
+        toastEL.classList.add("active");
+        proEL.classList.add("active");
+
+        setTimeout(function(){
+            toastEL.classList.remove("active");
+            proEL.classList.remove("active");
+        },5000)
+
+    }else if(isEmailError){
+        toastER.classList.add("active");
+        proER.classList.add("active");
+
+
+
+        setTimeout(function(){
+            toastER.classList.remove("active");
+            proER.classList.remove("active");
+        },5000)
+
+    }else if(isError){
+
+        document.getElementById("title").innerText = "Error";
+        document.getElementById("message").innerText = "Bad email or password";
+        toastER.classList.add("active");
+        proER.classList.add("active");
+
+
+        setTimeout(function(){
+           toastER.classList.remove("active");
+           proER.classList.remove("active");
+        },5000)
+
+    }
 
 
 

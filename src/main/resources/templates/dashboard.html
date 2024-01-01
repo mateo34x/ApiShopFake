@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/css/dashbo.css" th:href="@{/css/dashbo.css}">
+
+
+</head>
+<body onload="cargarPagina('/dataDash', 'Dashboard');">
+<div class="app" >
+    <header class="app-header">
+        <div class="app-header-logo">
+            <div class="logo">
+				<span class="logo-icon">
+					<img src="https://res.cloudinary.com/dtljcfmr3/image/upload/v1701396857/WhatsApp_Image_2023-11-20_at_9.19.01_PM-removebg-preview_1_phyhcq.png" />
+				</span>
+
+            </div>
+        </div>
+        <div class="app-header-navigation">
+
+            <H1 id="tituloPagina" ></H1>
+
+        </div>
+        <div class="app-header-actions">
+            <button class="user-profile">
+                <span th:text="${fullName}"></span>
+                <span>
+					<img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+				</span>
+            </button>
+
+        </div>
+        <div class="app-header-mobile">
+            <button class="icon-button large">
+                <i class="ph-list"></i>
+            </button>
+        </div>
+
+    </header>
+    <div class="app-body">
+        <div class="app-body-navigation">
+            <nav class="navigation">
+                <a href="#" onclick="cargarPagina('/dataDash', 'Dashboard');" >
+                    <i class="ph-browsers"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#">
+                    <i class="ph-browsers"></i>
+                    <span>Tokens</span>
+                </a>
+
+
+                <a href="#" onclick="cargarPagina('/formulario','Formulario');">
+                    <i class="ph-browsers"></i>
+                    <span>Add Product</span>
+                </a>
+
+                <a href="#">
+                    <i class="ph-browsers"></i>
+                    <span>View All Products</span>
+                </a>
+
+                <a href="#">
+                    <i class="ph-browsers"></i>
+                    <span>Photos Product</span>
+                </a>
+
+
+
+            </nav>
+
+            <footer class="footer">
+                Logout
+            </footer>
+        </div>
+        <div class="app-body-main-content">
+
+                <div id="contenido" class="content">
+                    <link rel="stylesheet" href="../static/css/test.css" th:href="@{/css/test.css}">
+                </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script src="../static/css/JavaSD.js" th:src="@{/css/JavaSD.js}"></script>
+<script defer src="https://use.fontawesome.com/releases/v6.5.1/js/all.js" crossorigin="anonymous"></script>
+
+
+
+
+</body>
+</html>

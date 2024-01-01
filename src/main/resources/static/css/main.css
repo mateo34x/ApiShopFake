@@ -1,0 +1,490 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+}
+
+
+
+
+
+
+/* Media queries para tamaños de pantalla específicos */
+
+@media (max-width:999px){
+
+   body{
+    background: #000000;
+   }
+  .v1_4 {
+    width: 90%;
+    max-width: 504px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 13%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Ubuntu Mono;
+    font-weight: bold;
+    font-size: 10vw;
+    text-align: center;
+  }
+
+  .v1_25 {
+    width: 20vw;
+    height: 10vw;
+    background: url("https://res.cloudinary.com/dtljcfmr3/image/upload/v1702770023/WhatsApp_Image_2023-11-20_at_9.19_1_upa4hw.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 2%;
+    left: 10%;
+    transform: translateX(-50%);
+    overflow: hidden;
+  }
+
+
+
+
+  .v1_32 {
+      width: 20vw;
+      color: rgba(255, 255, 255, 1);
+      position: absolute;
+      top: 3%;
+      right: 1%;
+      font-family: Ubuntu Mono;
+      font-weight: bold;
+      font-size: 3.5vw;
+      text-align: center;
+    }
+
+  .v1_22 {
+    width: 90%;
+    max-width: 572px;
+    color: rgba(113, 113, 113, 1);
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Ubuntu Mono;
+    font-size: 4.5vw;
+    text-align: center;
+  }
+
+
+  .v1_36 {
+    width: 80vw;
+    height: 40vh;
+    background: url("https://res.cloudinary.com/dtljcfmr3/image/upload/v1702770024/Sin_t%C3%ADtulo_1_pqijss.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+
+  .docker {
+    display: flex;
+    justify-content: center;
+  }
+
+  .children{
+      display: block;
+      width: 40%;
+      margin-bottom: 100px;
+      bottom: 5%;
+      position:absolute;
+  }
+
+  .button-27 {
+    display:none;
+  }
+
+
+
+   .button-28 {
+             appearance: none;
+             background-color: transparent;
+             border: 2px solid #1A1A1A;
+             border-radius: 15px;
+             margin-top:40px;
+             box-sizing: border-box;
+             color: #8B8B8B;
+             cursor: pointer;
+             display: inline-block;
+             font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+             font-size: 30px;
+             font-weight: 600;
+             line-height: normal;
+             min-height: 100px;
+             min-width: 0;
+             outline: none;
+             padding: 16px 24px;
+             text-align: center;
+             text-decoration: none;
+             transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+             user-select: none;
+             -webkit-user-select: none;
+             touch-action: manipulation;
+             width: 100%;
+             will-change: transform;
+             }
+
+             .button-28:disabled {
+             pointer-events: none;
+             }
+
+             .button-28:hover {
+             color: #fff;
+             background-color: #1A1A1A;
+             box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+             transform: translateY(-2px);
+             }
+
+             .button-28:active {
+             box-shadow: none;
+             transform: translateY(0);
+             }
+
+
+.button-85 {
+  font-size: 30px;
+  font-weight: 600;
+  padding: 16px 24px;
+  width: 100%;
+  height:100px;
+  /*! border: none; */
+  outline: none;
+  color: white;
+  /*! background: #f00; */
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+}
+
+@media (min-width: 1024px){
+
+      body{
+        background: #1E1E1E;
+        display:grid;
+        place-items:center;
+       }
+
+      .v1_3{
+        width: 95%;
+        height: 92vh;
+        margin-top: 3.5vh;
+        background: rgba(0, 0, 0, 1);
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+
+
+
+      .v1_4 {
+
+          width: 30%;
+          max-width: 504px;
+          color: rgba(255, 255, 255, 1);
+          position: absolute;
+          top: 23%;
+          left: 9%;
+          transform: translateX(0%);
+          font-family: Ubuntu Mono;
+          font-weight: bold;
+          font-size: 70px;
+          text-align: left;
+
+           opacity: 0;
+           transform: translateY(30px);
+           transition: opacity 0.8s, transform 0.8s;
+
+      }
+      .v1_22 {
+                   width: 90%;
+                   max-width: 572px;
+                   color: rgba(113, 113, 113, 1);
+                   position: absolute;
+                   top: 54%;
+                   left: 10%;
+                   transform: translateX(0%);
+                   font-family: Ubuntu Mono;
+                   font-size: 24px;
+                   text-align: left;
+
+                   opacity: 0;
+                   transform: translateY(30px);
+                   transition: opacity 0.8s, transform 0.8s;
+      }
+
+
+
+
+
+      .v1_25 {
+            width: 67px;
+            height: 67px;
+            background: url("https://res.cloudinary.com/dtljcfmr3/image/upload/v1702770023/WhatsApp_Image_2023-11-20_at_9.19_1_upa4hw.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            position: absolute;
+            top: 2%;
+            left: 10%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.9s, transform 0.9s;
+
+
+          }
+
+      .v1_32 {
+                width: 100px;
+                color: rgba(255, 255, 255, 1);
+                position: absolute;
+                top: 5%;
+                right: 7%;
+                font-family: Ubuntu Mono;
+                font-weight: bold;
+                font-size: 1.5vw;
+                text-align: center;
+
+              }
+
+             a {
+
+               text-decoration:none;
+               box-shadow: inset 0 0 0 0 white;
+               color: white;
+               margin: 0 -.25rem;
+               transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+             }
+
+             a:hover {
+               box-shadow: inset 100px 0 0 0 white;
+               color: black;
+             }
+
+      .hideen {
+
+      width: 100px;
+                      background:#000000;
+                      position: absolute;
+                      top: 5%;
+                      right: 7%;
+                      font-family: Ubuntu Mono;
+                      font-weight: bold;
+                      font-size: 1.5vw;
+                      text-align: center;
+                      height: 24px;
+                      z-index:1;
+                      transition: z-index 0.9s, transform 0.9s;
+
+      }
+
+
+      .v1_36 {
+              width: 320px;
+              height: 442px;
+              background: url("https://res.cloudinary.com/dtljcfmr3/image/upload/v1702770024/Sin_t%C3%ADtulo_1_pqijss.png");
+              background-position-x: 0%;
+              background-position-y: 0%;
+              background-repeat: repeat;
+              background-size: auto;
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: cover;
+              position: absolute;
+              top: 15%;
+              left: 69%;
+              border-radius: 30px;
+              overflow: hidden;
+              opacity: 0;
+              transform: translateY(30px);
+              transition: opacity 0.8s, transform 0.8s;
+            }
+
+
+
+
+      .children{
+                display: block;
+                width: 40%;
+                margin-bottom: 99px;
+                left:131px;
+                bottom: 5%;
+                position:absolute;
+            }
+
+
+
+      .button-28 {
+                       appearance: none;
+                       background-color: transparent;
+                       border: 2px solid #1A1A1A;
+                       border-radius: 15px;
+                       margin-top:40px;
+                       box-sizing: border-box;
+                       color: #8B8B8B;
+                       cursor: pointer;
+                       display: inline-block;
+                       font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+                       font-size: 15px;
+                       font-weight: 600;
+                       margin-left:23px;
+                       line-height: normal;
+                       min-width: 0;
+                       outline: none;
+                       text-align: center;
+                       text-decoration: none;
+                       transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+                       user-select: none;
+                       -webkit-user-select: none;
+                       touch-action: manipulation;
+                       width: 195px;
+                       height:50px;
+                       will-change: transform;
+                        opacity: 0;
+                        transform: translateY(30px);
+                        transition: opacity 0.8s, transform 0.8s;
+                       }
+
+      .button-28:disabled {
+         pointer-events: none;
+      }
+
+      .button-28:hover {
+                           color: #fff;
+                           background-color: #1A1A1A;
+                           box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                           transform: translateY(-2px);
+                           }
+
+      .button-28:active {
+                       box-shadow: none;
+                       transform: translateY(0);
+                       }
+
+
+      .button-27 {
+                             appearance: none;
+                             background-color: transparent;
+                             border: 2px solid #1A1A1A;
+                             border-radius: 15px;
+                             margin-top:40px;
+                             box-sizing: border-box;
+                             color: #8B8B8B;
+                             cursor: pointer;
+                             display: inline-block;
+                             font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+                             font-size: 15px;
+                             font-weight: 600;
+                             line-height: normal;
+                             min-width: 0;
+                             outline: none;
+                             text-align: center;
+                             text-decoration: none;
+                             transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+                             user-select: none;
+                             -webkit-user-select: none;
+                             touch-action: manipulation;
+                             width: 195px;
+                             height:50px;
+                             will-change: transform;
+                              opacity: 0;
+                              transform: translateY(30px);
+                              transition: opacity 0.8s, transform 0.8s;
+                             }
+
+            .button-27:disabled {
+               pointer-events: none;
+            }
+
+            .button-27:hover {
+                                 color: #fff;
+                                 background-color: #1A1A1A;
+                                 box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                                 transform: translateY(-2px);
+                                 }
+
+            .button-27:active {
+                             box-shadow: none;
+                             transform: translateY(0);
+                             }
+
+
+
+
+  }
