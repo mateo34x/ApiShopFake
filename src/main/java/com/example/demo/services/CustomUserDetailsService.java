@@ -37,11 +37,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userRepository.findItemByEmail(email);
     }
 
-    public void saveUser(Users user) {
+    public void saveUser(Users user,String token) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        user.setToken(token);
+
         userRepository.save(user);
     }
 

@@ -13,10 +13,7 @@ public class NewController {
     ItemRepository groceryItemRepo;
 
 
-    @GetMapping("/formulario")
-    public String mostrarFormulario() {
-        return "formtest";
-    }
+
 
     @GetMapping("/dataDash")
     public String dataDash() {

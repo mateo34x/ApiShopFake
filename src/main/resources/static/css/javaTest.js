@@ -96,7 +96,26 @@ function formatCurrency(input, blur) {
     var updated_len = input_val.length;
     caret_pos = updated_len - original_len + caret_pos;
     input.setSelectionRange(caret_pos, caret_pos);
+
+
+
 }
 
+    var successElement = document.querySelector('[data-success]');
+    var errorElement = document.querySelector('[data-error]');
+
+
+    const iconS = document.querySelector(".iconTS");
+    const iconR = document.querySelector(".iconTE");
+
+    var isSuccess = successElement && successElement.getAttribute('data-success') === 'true';
+    var isError = errorElement && errorElement.getAttribute('data-error') === 'true';
+
+    if (isSuccess) {
+       iconS.classList.add("active");
+
+    }else if(isError){
+        iconR.classList.add("active");
+    }
 
 

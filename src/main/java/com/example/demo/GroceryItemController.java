@@ -30,6 +30,7 @@ public class GroceryItemController {
                                      @RequestParam("descripcion") String descripcion,
                                      @RequestParam("price") String price,
                                      @RequestParam("quantity") int quantity,
+                                     @RequestParam("token")String token,
                                      @RequestParam("category") String category,
                                      @RequestParam("uploadFile") MultipartFile img1,
                                      @RequestParam("uploadFile2") MultipartFile img2) throws IOException {
@@ -41,7 +42,6 @@ public class GroceryItemController {
         byte[] bytes2 = img2.getBytes();
         String encodedString2 = Base64.getEncoder().encodeToString(bytes2);*/
 
-        String token = "eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJtYXRlbzE1cmdAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzAzODE0MjU0fQ.LVOxSAcrqAYV7qaV73RGijFGd_Hda-gs08IIjSC6olo";
         try {
 
             if (JwtTokenUtil.validateToken(token)) {

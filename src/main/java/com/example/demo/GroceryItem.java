@@ -21,6 +21,7 @@ public class GroceryItem implements Serializable {
     private String fotoBase1;
     private String fotoBase2;
 
+
     public GroceryItem() {
     }
 

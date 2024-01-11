@@ -1,39 +1,62 @@
 <!DOCTYPE html>
-<html>
-<head xmlns:th="http://www.thymeleaf.org">
-
-    <title>Formulario para crear un GroceryItem</title>
-    <link rel="stylesheet" href="../static/css/form.css" th:href="@{/css/form.css}">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/tokens.css" th:href="@{/css/tokens.css}">
+    <title>API API Keys</title>
 </head>
 <body>
-<h1>Formulario para crear un GroceryItem</h1>
-<form action="/guardar" method="POST"  enctype="multipart/form-data">
+<div class="container">
+
+    <div style="display:flex; align-items:center; justify-content:space-between;">
+        <h1>Tokens</h1>
+
+        <div style="display:flex;">
+            <button>+ New token</button>
 
 
+        </div>
+    </div>
 
 
+    <div class="section">
+        <table>
+
+            <thead style="background:rgba(189,200,255,.091); width:2rem;">
+            <tr>
+                <th class="thtd">Name</th>
+                <th class="thtd">Onboarding</th>
+                <th class="thtd">Token</th>
+                <th class="thtd">Permission</th>
+                <th class="thtd">Last Used</th>
+                <th class="thtd">Created</th>
+            </tr>
+            </thead>
+
+            <tr>
+                <td>Onboarding</td>
+                <td>‒‒‒‒‒‒‒‒‒</td>
+                <td>re_QuvsQCTS...</td>
+                <td>Sending access</td>
+                <td>1 day ago</td>
+                <td>25 days ago</td>
+            </tr>
 
 
+            <tr>
+                <td>Onboarding</td>
+                <td>‒‒‒‒‒‒‒‒‒</td>
+                <td>re_QuvsQCTS...</td>
+                <td>Sending access</td>
+                <td>1 day ago</td>
+                <td>25 days ago</td>
+            </tr>
+        </table>
+    </div>
 
-    <input type="text" id="token" class="aks-input" placeholder="Token" name="token"><br><br>
-
-    <input type="text" id="id" class="aks-input" placeholder="ID" name="id"><br><br>
-
-    <input type="text" id="name" class="aks-input" placeholder="Name" name="name"><br><br>
-
-    <input type="text" id="descripcion" class="aks-input" placeholder="Description" name="descripcion"><br><br>
-
-    <input type="text" id="price" class="aks-input" placeholder="$-Price" name="price"><br><br>
-
-    <input type="number" id="quantity" class="aks-input" placeholder="in Stock" name="quantity"><br><br>
-
-    <input type="text" id="category" class="aks-input" placeholder="Category" name="category"><br><br>
-
-    <input type="file" id="img1" name="img1" accept="image/*"><br><br>
-
-    <input type="file" id="img2" name="img2" accept="image/*"><br><br>
-
-    <input type="submit" value="Guardar">
-</form>
+</div>
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +28,8 @@ public class AuthController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+
     
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
@@ -55,13 +58,13 @@ public class AuthController {
             modelAndView.addObject("message", "email already registered");
 
         } else {
-            userService.saveUser(user);
+            String token = JwtTokenUtil.generateToken(user.getEmail());
+            userService.saveUser(user,token);
             modelAndView.addObject("success", true);
             modelAndView.addObject("title", "Welcome");
             modelAndView.addObject("message", " registered successfully");
             modelAndView.addObject("user", new Users());
             System.out.println(user.getEmail()+"\n"+user.getRoles().toString());
-            String token = JwtTokenUtil.generateToken(user.getEmail());
             modelAndView.addObject("success",true);
 
             Resend resend = new Resend("re_QuvsQCTS_7iZ6duRG8JVw37Loc5XsQPP6");
@@ -102,8 +105,8 @@ public class AuthController {
         System.out.println(auth.getName());
         System.out.println(user.getFullname());
         String username = user.getFullname();
-        modelAndView.addObject("currentUser", user);
-        modelAndView.addObject("fullName", username);
+        modelAndView.addObject("currentUser", username);
+        modelAndView.addObject("fullName",username);
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
         modelAndView.setViewName("dashboard");
         return modelAndView;
@@ -113,6 +116,23 @@ public class AuthController {
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/formulario"}, method = RequestMethod.GET)
+    public ModelAndView mostrarFormulario() {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Users user = userService.findUserByEmail(auth.getName());
+        String tokenGenerated = user.getToken();
+        if (JwtTokenUtil.validateToken(tokenGenerated)){
+            modelAndView.addObject("success",true);
+        }else{
+            modelAndView.addObject("error",true);
+        }
+        modelAndView.addObject("token", tokenGenerated);
+        modelAndView.setViewName("formtest");
         return modelAndView;
     }
 

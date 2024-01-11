@@ -4,13 +4,12 @@
   width: 42%;
   border-radius: 7px;
   padding: 8px 10px;
-  margin-top:30px;
   display: flex;
   align-items: center;
   justify-content: center;
   vertical-align: unset;
   position: relative;
-  margin-left:-12px;
+  /*! margin-left:-12px; */
   cursor: pointer;
   border: 0.1rem solid #bbc1e1;
   background: #fff;
@@ -27,9 +26,103 @@
 
 
 .price{
-margin-left:20px;
-width:18%;
-margin-top:30px;
+
+width:32%;
 border-radius: 7px;
 border: 0.1rem solid #bbc1e1;
+padding: 8px 10px;
+
 }
+
+.btn-form{
+
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: #fff;
+  -webkit-clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  height: 40px;
+  font-size: 0.7rem;
+  line-height: 14px;
+  letter-spacing: 1.2px;
+  transition: .2s .1s;
+  background-image: linear-gradient(90deg,#1a2b42,#000);
+  border: 0 solid;
+  overflow: hidden;
+
+
+}
+
+.btn-form:hover {
+  cursor: pointer;
+  transition: all .3s ease-in;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+
+.input {
+  width:100%;
+  line-height: 30px;
+  padding: 8px 10px;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  background-color: #f8fafc;
+  color: #0d0c22;
+  transition: .5s ease;
+}
+
+.iconTS {
+
+  position: absolute;
+  left: 0.7rem;
+  display:flex;
+  top:15px;
+  background-color: #57c069;
+  color: #fff;
+  font-size: 20px;
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius:50%;
+  padding:3px;
+  visibility:collapse;
+
+}
+
+.iconTS.active{
+      visibility:visible;
+}
+
+
+.iconTE {
+  position: absolute;
+    left: 0.7rem;
+    display:flex;
+    top:15px;
+    background-color: #d51b1b;
+    color: #fff;
+    font-size: 20px;
+    height: 24px;
+    width: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius:50%;
+    padding:3px;
+    visibility:collapse;
+
+}
+
+.iconTE.active{
+      visibility:visible;
+}
+
+
+

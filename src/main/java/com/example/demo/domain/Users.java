@@ -24,6 +24,8 @@ public class Users {
     private String email;
     private String password;
     private String fullname;
+
+    private String token;
     private boolean enabled;
     @DBRef
     private Set<Role> roles;
@@ -42,6 +44,14 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getPassword() {
