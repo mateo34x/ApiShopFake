@@ -47,6 +47,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
+
+    public void updateToken(Users user,String token) {
+        user.setToken(token);
+        userRepository.save(user);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 

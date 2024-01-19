@@ -1,4 +1,4 @@
-"use strict";
+
 function dragNdrop(event,previewId) {
     var fileName = URL.createObjectURL(event.target.files[0]);
 

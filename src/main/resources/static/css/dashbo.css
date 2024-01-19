@@ -65,9 +65,9 @@ a {
 }
 
 .app {
-	min-height: 80vh;
+	min-height: 91vh;
 	width: 95%;
-	max-width: 1600px;
+	/*! height: 156%; */
 	background-color: var(--c-gray-800);
 	padding: 2vw 4vw 6vw;
 	display: flex;
@@ -157,7 +157,7 @@ a {
 }
 
 .footer {
-	margin-top: auto;
+	/*! top: 70%; */
 	h1 {
 		font-size: 1.5rem;
 		line-height: 1.125;
@@ -176,6 +176,8 @@ a {
 		font-size: 0.75rem;
 		color: var(--c-text-tertiary);
 	}
+	/*! position: fixed; */
+	margin-bottom: 20px;
 }
 
 .logo {
@@ -270,7 +272,7 @@ a {
 	align-items: center;
 	border: 0;
 	margin-bottom:4%;
-	margin-left:40%;
+	margin-left:58%;
 	background: transparent;
 	cursor: pointer;
 	color: var(--c-text-tertiary);
@@ -533,8 +535,28 @@ a {
 	}
 }
 
-.content{
+.dashboard,
+.token,
+.addProduct,
+.ViewAllP,
+.Photo {
+    display: none;
+}
 
+.dashboard.active,
+.token.active,
+.addProduct.active,
+.ViewAllP.active,
+.Photo.active {
+    display: block;
+}
+
+.content{
+top:29%;
+position:absolute;
+width: 70%;
+height: 70%;
+left: 21%;
 }
 
 

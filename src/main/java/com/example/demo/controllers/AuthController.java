@@ -1,6 +1,9 @@
 
 package com.example.demo.controllers;
 
+import com.example.demo.GroceryItem;
+import com.example.demo.ItemRepository;
+import com.example.demo.UserRepository;
 import com.example.demo.domain.Users;
 import com.example.demo.services.CustomUserDetailsService;
 import com.resend.Resend;
@@ -13,11 +16,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Optional;
 
 
 @Controller
@@ -29,6 +34,9 @@ public class AuthController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+
+    @Autowired
+    UserRepository userRepository;
 
     
     public ModelAndView login() {
@@ -47,7 +55,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView createNewUser(Users user, BindingResult bindingResult) {
+    public ModelAndView createNewUser(Users user, BindingResult bindingResult) throws ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         Users userExists = userService.findUserByEmail(user.getEmail());
@@ -58,7 +66,7 @@ public class AuthController {
             modelAndView.addObject("message", "email already registered");
 
         } else {
-            String token = JwtTokenUtil.generateToken(user.getEmail());
+            String token = JwtTokenUtil.generateToken(user.getEmail(),"");
             userService.saveUser(user,token);
             modelAndView.addObject("success", true);
             modelAndView.addObject("title", "Welcome");
@@ -108,6 +116,14 @@ public class AuthController {
         modelAndView.addObject("currentUser", username);
         modelAndView.addObject("fullName",username);
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
+        modelAndView.addObject("token", user.getToken());
+        if (JwtTokenUtil.validateToken(user.getToken())){
+            modelAndView.addObject("success",true);
+        }else{
+            modelAndView.addObject("error",true);
+        }
+
+
         modelAndView.setViewName("dashboard");
         return modelAndView;
     }
@@ -135,5 +151,31 @@ public class AuthController {
         modelAndView.setViewName("formtest");
         return modelAndView;
     }
+
+    @RequestMapping(value = {"/createT"}, method = RequestMethod.GET)
+    public ModelAndView mostrarAddToken() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("formulario");
+        return modelAndView;
+    }
+
+
+    @PostMapping("/crearToken")
+    public Object crearToken(@RequestParam("dateInput") String exp) throws ParseException {
+
+
+        // Imprimir el número de milisegundos.
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Users user = userService.findUserByEmail(auth.getName());
+        String token = JwtTokenUtil.generateToken(user.getEmail(),exp);
+        userService.updateToken(user,token);
+
+        return dashboard();
+
+
+    }
+
+
 
 }

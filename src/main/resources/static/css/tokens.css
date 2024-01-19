@@ -1,28 +1,28 @@
-body {
+.bodyCT {
     font-family: Arial, sans-serif;
     background-color:black;
 }
 
-.container {
-    width: 80%;
+.containerCT {
+    width: 100%;
     margin: 0 auto;
 }
 
-h1 {
+.h1CT {
     color: #333;
     text-align: center;
 }
 
-.section {
+.sectionCT {
     margin-bottom: 2rem;
 }
 
-h2 {
+.h2CT {
     color: #777;
     margin-bottom: 1rem;
 }
 
-table {
+.tableCT {
     width: 100%;
     border-collapse: separate;
     border-style: none;
@@ -92,19 +92,282 @@ font-size: .75rem;
 :after,
 :before {
   box-sizing:border-box;
-  border:0 solid #e5e7eb;
+  border:0 solid #fff;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
+
+
+
+
+
+
+
+.container2CT {
+ top: calc(100vh - 80%);
+ padding:1.5rem;
+ background-color:rgb(5 5 10/5);
+ left:0;
+ right:0;
+ z-index:40;
+ top:-200%;
+ border-color:rgba(212,228,254,.191);
+ border-width:1px;
+ border-radius:.5rem;
+ max-width:28rem;
+ width:100%;
+ margin-left:auto;
+ margin-right:auto;
+ position:fixed;
+ transform: translate(0,-50%) scale(0.5);
+ transition: opacity 300ms ease-in-out,top 1000ms ease-in-out,transform 1000ms ease-in-out;
+ opacity:0;
+
+}
+
+.container2CT.active{
+ opacity:1;
+ top:50%;
+transform:translate(0,-50%) scale(1);
+transition:transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
+}
+
+
+.boxCT {
+
+flex-direction:column;
+display:flex;
+margin-top:1.5rem;
+}
+
+.button-boxCT {
+ gap:.5rem;
+ align-items:center;
+ display:flex;
+ margin-top:1.5rem;
+
+}
+
+.add-buttonCT{
+transition-timing-function:cubic-bezier(.4,0,.2,1);
+transition-duration:.2s;
+transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+background-color:rgb(255 255 255/1);
+color:rgb(0 0 0/1);
+font-weight:600;
+font-size: .875rem;
+line-height: 1.25rem;
+
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin-top: 1rem;
+
 }
 
-button:hover {
-    background-color: #0056b3;
+.add-buttonCT.disable{
+opacity:.7;
+cursor:not-allowed;
 }
+
+
+
+.cancel-buttonCT {
+ transition-timing-function:cubic-bezier(.4,0,.2,1);
+ transition-duration:.2s;
+ transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+ color:rgba(239,245,255,.639);
+ font-weight:600;
+ font-size: .875rem;
+ line-height: 1.25rem;
+ background-color: rgba(24,24,246,.009);
+ border-color:rgba(24,24,246,.009);
+ border-width:1px;
+ border-radius:.375rem;
+ gap:.25rem;
+ padding: 0.5rem 1rem;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ margin-top: 1rem;
+ justify-content:center;
+ user-select:none;
+ cursor:pointer;
+
+}
+
+.cancel-buttonCT:hover{
+background-color: #44475a;
+color: rgba(252,253,255,.936);
+}
+
+.labelCT{
+ color:rgba(239,245,255,.693);
+ font-size:.875rem;
+ line-height:1.25rem;
+ margin-bottom:7px;
+}
+
+H2{
+font-size:1rem;
+line-height:1.5rem;
+color:white;
+}
+.inputCT{
+margin-top:calc(.5rem * calc(1 - var(--tw-space-y-reverse)));
+margin-bottom:calc(.5rem * var(--tw-space-y-reverse));
+background-color:rgba(189,200,255,.091);
+border-color:rgba(212,228,254,.191);
+border-width:1px;
+border-radius:.375rem;
+appearance:none;
+margin:0;
+padding:0;
+font-size:.875rem;
+line-height:1.25rem;
+outline:2px solid transparent;
+outline-offset:2px;
+color: rgba(252,253,255,.936);
+height: 2rem;
+padding-left:.5rem;
+padding-right:.5rem;
+}
+
+.dropdownCT{
+margin-top:calc(.5rem * calc(1 - var(--tw-space-y-reverse)));
+margin-bottom:calc(.5rem * var(--tw-space-y-reverse));
+background-color:#161720;
+border-color:rgba(212,228,254,.191);
+border-width:1px;
+border-radius:.375rem;
+margin:0;
+padding:0;
+font-size:.875rem;
+line-height:1.25rem;
+outline:2px solid transparent;
+outline-offset:2px;
+color: rgba(252,253,255,.936);
+height: 2rem;
+padding-left:.5rem;
+padding-right:.5rem;
+
+}
+
+.addCT{
+    transition-timing-function:cubic-bezier(.4,0,.2,1);
+    transition-duration:.2s;
+    transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+    background-color:rgb(255 255 255/1);
+    color:rgb(0 0 0/1);
+    font-weight:600;
+    font-size: .875rem;
+    line-height: 1.25rem;
+
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1rem;
+}
+
+.closeAddCT{
+ background-color: rgba(24,24,246,.009);
+ border-color:rgba(24,24,246,.009);
+ border-width:1px;
+ border-radius:.25rem;
+ justify-content:center;
+ align-items:center;
+ cursor:pointer;
+ display:flex;
+ color: rgba(239,245,255,.693);
+ right:1.5rem;
+ position:absolute;
+ top:37px;
+}
+
+.closeAddCT:hover{
+background-color: #44475a;
+color: rgba(252,253,255,.936);
+}
+
+select{
+background-color: #CACFD2;
+}
+
+
+.calendar {
+  background-color: rgba(212,228,254,.191);
+  border-radius: .5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 317px;
+  position: absolute;
+  z-index: 1;
+  display: none;
+  border-width: 1px;
+  border-color: rgba(212,228,254,.191);
+}
+
+.headerCT {
+  background-color: #111217;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-color: #2d3039;
+}
+
+#prevBtn,
+#nextBtn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#monthYear {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 10px;
+  background-color: #05050a;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-color: tomato;
+}
+
+.day {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  color: antiquewhite;
+}
+
+.day:hover{
+background-color: #44475a;
+color: rgba(252,253,255,.936);
+}
+
+.day.current {
+  background-color: #3498db;
+  color: black;
+}
+
+.day.selected {
+  background-color: #2ecc71;
+  color: black;
+}
+
+
+
+
+
