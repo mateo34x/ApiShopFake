@@ -44,18 +44,24 @@ public class GroceryItemController {
 
         try {
 
-            if (JwtTokenUtil.validateToken(token)) {
-                String imageUrl1 = cloudinaryService.uploadFile(img1);
-                String imageUrl2 = cloudinaryService.uploadFile(img2);
+            if (!token.equals("genere un token")){
+                if (JwtTokenUtil.validateToken(token)) {
+                    String imageUrl1 = cloudinaryService.uploadFile(img1);
+                    String imageUrl2 = cloudinaryService.uploadFile(img2);
 
-                groceryItemRepo.save(new GroceryItem("OOO",name,descripcion,"$"+price,quantity,category, img1.getName(),img1.getContentType(),imageUrl1,imageUrl2 ));
+                    groceryItemRepo.save(new GroceryItem("OOO",name,descripcion,"$"+price,quantity,category, img1.getName(),img1.getContentType(),imageUrl1,imageUrl2 ));
 
-                return "redirect:/view/findAll?token="+token;
+                    return "redirect:/view/findAll?token="+token;
 
-            } else {
-                //
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token no válido");
+                } else {
+                    //
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token no válido");
+                }
+            }else{
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No posee un token para crear productos, genere uno");
             }
+
+
 
         } catch (IOException e) {
             e.printStackTrace();

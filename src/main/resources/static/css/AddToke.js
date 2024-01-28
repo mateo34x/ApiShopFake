@@ -18,6 +18,9 @@ const nextBtn = document.getElementById("nextBtn");
 const monthYear = document.getElementById("monthYear");
 const dateInput = document.getElementById("dateInput");
 const calendar = document.getElementById("calendar");
+var menu = document.getElementById('menu');
+var displayValue = menu.style.display;
+
 
 let currentDate = new Date();
 let selectedDate = null;
@@ -28,7 +31,9 @@ function handleDayClick(day) {
     currentDate.getMonth(),
     day
   );
-  dateInput.value = selectedDate.toLocaleDateString("en-US");
+
+  const formattedDate = `${(selectedDate.getMonth() + 1).toString().padStart(2, '0')}/${selectedDate.getDate().toString().padStart(2, '0')}/${selectedDate.getFullYear()}`;
+  dateInput.value = formattedDate;
   console.log(selectedDate.getTime());
   calendar.style.display = "none";
   renderCalendar();
@@ -46,13 +51,19 @@ function createDayElement(day) {
     dayElement.classList.add("selected");
   }
 
-  dayElement.textContent = day;
-  dayElement.addEventListener("click", () => {
-    handleDayClick(day);
-  });
+  // Deshabilita visualmente los días anteriores a la fecha actual
+  if (date < new Date()) {
+    dayElement.classList.add("disabled");
+    dayElement.textContent = day;
+  } else {
+    dayElement.textContent = day;
+    dayElement.addEventListener("click", () => {
+      handleDayClick(day);
+    });
+  }
+
   daysContainer.appendChild(dayElement);
 }
-
 function renderCalendar() {
   daysContainer.innerHTML = "";
   const firstDay = new Date(
@@ -98,13 +109,52 @@ document.addEventListener("click", (event) => {
 
 function positionCalendar() {
   const inputRect = dateInput.getBoundingClientRect();
-  calendar.style.top = 100 + "px"
+  calendar.style.top = 70 + "px"
   calendar.style.left = 484 + "px";
 }
 
 window.addEventListener("resize", positionCalendar);
 
 renderCalendar();
+
+function mostrarMenu(boton) {
+
+       if (displayValue === 'none') {
+
+            console.log('display:none');
+            menu.style.display = 'grid';
+
+           var rect = boton.getBoundingClientRect();
+           menu.style.left = 1150.05 + 'px';
+           menu.style.top = rect.bottom + 'px';
+
+      }
+
+       var tokenId = boton.getAttribute('data-tokenid');
+       console.log('Valor del token.id:', tokenId);
+       document.getElementById('tokenid').value = tokenId;
+
+}
+
+function ocultarMenu() {
+   var menu = document.getElementById('menu');
+   menu.style.display = 'none';
+}
+
+
+window.onclick = function(event) {
+
+    if (!event.target.matches('.buttonCopy') && !event.target.closest('.buttonCopy') && !event.target.matches('.copy') && !event.target.closest('.copy')) {
+
+        ocultarMenu();
+    }
+}
+
+
+
+
+
+
 
 
 

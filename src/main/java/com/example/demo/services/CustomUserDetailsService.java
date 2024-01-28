@@ -8,6 +8,7 @@ package com.example.demo.services;
 import com.example.demo.RoleRepository;
 import com.example.demo.UserRepository;
 import com.example.demo.domain.Role;
+import com.example.demo.domain.Tokens;
 import com.example.demo.domain.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,21 +38,17 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userRepository.findItemByEmail(email);
     }
 
-    public void saveUser(Users user,String token) {
+    public void saveUser(Users user, Tokens tokens) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-        user.setToken(token);
-
+        user.setTokens(Arrays.asList(tokens));
         userRepository.save(user);
     }
 
 
-    public void updateToken(Users user,String token) {
-        user.setToken(token);
-        userRepository.save(user);
-    }
+
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -63,6 +60,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         } else {
             throw new UsernameNotFoundException("username not found");
         }
+    }
+
+
+    public void addToken(Users user,Tokens tokens) {
+        user.agregarToken(tokens);
+        userRepository.save(user);
     }
 
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
@@ -78,5 +81,22 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserDetails buildUserForAuthentication(Users user, List<GrantedAuthority> authorities) {
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }
+
+
+    public List<Tokens> obtenerTodosLosTokens() {
+        List<Tokens> todosLosTokens = new ArrayList<>();
+
+        List<Users> usuarios = userRepository.findAll();
+        for (Users usuario : usuarios) {
+            if (usuario.getTokens() != null) {
+                todosLosTokens.addAll(usuario.getTokens());
+            }
+        }
+
+
+
+        return todosLosTokens;
+    }
+
 
 }

@@ -4,372 +4,490 @@
       xmlns:th="http://www.thymeleaf.org">
 
 
-    <head>
-        <title>Dashboard</title>
-        <link rel="stylesheet" href="../static/css/dashbo.css" th:href="@{/css/dashbo.css}">
-        <link rel="stylesheet" href="../static/css/tokens.css" th:href="@{/css/tokens.css}">
-        <link rel="stylesheet" href="../static/css/test.css" th:href="@{/css/test.css}">
-        <link rel="stylesheet" href="../static/css/form.css" th:href="@{/css/form.css}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet"/>
-        <link rel="icon" href="https://res.cloudinary.com/dtljcfmr3/image/upload/v1701396595/WhatsApp_Image_2023-11-20_at_9.19.01_PM_qwhxsd.jpg" type="image/png">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/css/dashbo.css" th:href="@{/css/dashbo.css}">
+    <link rel="stylesheet" href="../static/css/tokens.css" th:href="@{/css/tokens.css}">
+    <link rel="stylesheet" href="../static/css/test.css" th:href="@{/css/test.css}">
+    <link rel="stylesheet" href="../static/css/form.css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet"/>
+    <link rel="icon"
+          href="https://res.cloudinary.com/dtljcfmr3/image/upload/v1701396595/WhatsApp_Image_2023-11-20_at_9.19.01_PM_qwhxsd.jpg"
+          type="image/png">
 
 
+</head>
 
 
-    </head>
-
-
-    <div class="app">
-        <header class="app-header">
-            <div class="app-header-logo">
-                <div class="logo">
+<div class="app">
+    <header class="app-header">
+        <div class="app-header-logo">
+            <div class="logo">
                     <span class="logo-icon">
                         <img src="https://res.cloudinary.com/dtljcfmr3/image/upload/v1701396857/WhatsApp_Image_2023-11-20_at_9.19.01_PM-removebg-preview_1_phyhcq.png">
                     </span>
 
-                </div>
             </div>
-            <div class="app-header-navigation" style="margin-bottom: 30px;margin-left: -40px;">
+        </div>
+        <div class="app-header-navigation" style="margin-bottom: 30px;margin-left: -40px;">
 
-                <h1 id="tituloPagina"></h1>
+            <h1 id="tituloPagina"></h1>
 
-            </div>
-            <div class="app-header-actions">
-                <button class="user-profile">
-                    <span th:text="${fullName}"></span>
-                    <span>
+        </div>
+        <div class="app-header-actions">
+            <button class="user-profile">
+                <span th:text="${fullName}"></span>
+                <span>
                         <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg">
                     </span>
-                </button>
+            </button>
 
-            </div>
-            <div class="app-header-mobile">
-                <button class="icon-button large">
-                    <i class="ph-list"></i>
-                </button>
-            </div>
+        </div>
+        <div class="app-header-mobile">
+            <button class="icon-button large">
+                <i class="ph-list"></i>
+            </button>
+        </div>
 
-        </header>
-        <div class="app-body">
-            <div class="app-body-navigation">
-                <nav class="navigation">
-                    <a href="#" onclick="toggleSection('dashboard');">
-                        <i class="ph-browsers"></i>
-                        <span>Dashboard</span>
-                    </a>
+    </header>
+    <div class="app-body">
+        <div class="app-body-navigation">
+            <nav class="navigation">
+                <a href="#" onclick="toggleSection('dashboard');">
+                    <i class="ph-browsers"></i>
+                    <span>Dashboard</span>
+                </a>
 
-                    <a href="#" onclick="toggleSection('token');">
-                        <i class="ph-browsers"></i>
-                        <span>Tokens</span>
-                    </a>
-
-
-                    <a href="#" onclick="toggleSection('addProduct');">
-                        <i class="ph-browsers"></i>
-                        <span>Add Product</span>
-                    </a>
-
-                    <a href="#" onclick="toggleSection('ViewAllP');">
-                        <i class="ph-browsers"></i>
-                        <span>View All Products</span>
-                    </a>
-
-                    <a href="#" onclick="toggleSection('Photo');">
-                        <i class="ph-browsers"></i>
-                        <span>Photos Product</span>
-                    </a>
+                <a href="#" onclick="toggleSection('token');">
+                    <i class="ph-browsers"></i>
+                    <span>Tokens</span>
+                </a>
 
 
+                <a href="#" onclick="toggleSection('addProduct');">
+                    <i class="ph-browsers"></i>
+                    <span>Add Product</span>
+                </a>
 
-                </nav>
+                <a href="#" onclick="toggleSection('ViewAllP');">
+                    <i class="ph-browsers"></i>
+                    <span>View All Products</span>
+                </a>
 
-                <footer class="footer">
-                    Logout
-                </footer>
-            </div>
-            <div class="app-body-main-content" style="min-width: 150vh;min-height: 70vh;">
-
-                <div id="contenido" class="content">
-
-                    <div class="dashboard active">
-                        <section class="service-section" style="margin-top: -20px;">
-
-
-
-                            <div class="tiles">
-                                <article class="tile">
-                                    <div class="tile-header">
-                                        <i class="ph-lightning-light"></i>
-                                        <h3>
-                                            <span>Electricity</span>
-                                            <span>UrkEnergo LTD.</span>
-                                        </h3>
-                                    </div>
-                                    <a href="#">
-                                        <span>Go to service</span>
-                                        <span class="icon-button">
-                                    <i class="ph-caret-right-bold"></i>
-                                </span>
-                                    </a>
-                                </article>
-                                <article class="tile">
-                                    <div class="tile-header">
-                                        <i class="ph-fire-simple-light"></i>
-                                        <h3>
-                                            <span>Heating Gas</span>
-                                            <span>Gazprom UA</span>
-                                        </h3>
-                                    </div>
-                                    <a href="#">
-                                        <span>Go to service</span>
-                                        <span class="icon-button">
-                                    <i class="ph-caret-right-bold"></i>
-                                </span>
-                                    </a>
-                                </article>
-                                <article class="tile">
-                                    <div class="tile-header">
-                                        <i class="ph-file-light"></i>
-                                        <h3>
-                                            <span>Tax online</span>
-                                            <span>Kharkov 62 str.</span>
-                                        </h3>
-                                    </div>
-                                    <a href="#">
-                                        <span>Go to service</span>
-                                        <span class="icon-button">
-                                    <i class="ph-caret-right-bold"></i>
-                                </span>
-                                    </a>
-                                </article>
-                            </div>
-
-                        </section>
-
-                    </div>
-                    <div style="position: relative;top: -15%;" class="token">
-                        <div class="containerCT">
-
-                            <div style="display:flex;  justify-content:end;">
-                                <div style="display:flex; margin-bottom:20px">
-                                    <button id="add" class="addCT">+ New token</button>
+                <a href="#" onclick="toggleSection('Photo');">
+                    <i class="ph-browsers"></i>
+                    <span>Photos Product</span>
+                </a>
 
 
+            </nav>
+
+            <footer class="footer">
+                Logout
+            </footer>
+        </div>
+        <div class="app-body-main-content" style="min-width: 150vh;">
+
+            <div id="contenido" class="content">
+
+                <div th:if="${tokenA}" th:attr="data-successT=${tokenA}"></div>
+
+
+                <div class="dashboard active ">
+                    <section class="service-section" style="margin-top: -20px;">
+
+
+                        <div class="tiles">
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="ph-lightning-light"></i>
+                                    <h3>
+                                        <span>Electricity</span>
+                                        <span>UrkEnergo LTD.</span>
+                                    </h3>
                                 </div>
+                                <a href="#">
+                                    <span>Go to service</span>
+                                    <span class="icon-button">
+                                    <i class="ph-caret-right-bold"></i>
+                                </span>
+                                </a>
+                            </article>
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="ph-fire-simple-light"></i>
+                                    <h3>
+                                        <span>Heating Gas</span>
+                                        <span>Gazprom UA</span>
+                                    </h3>
+                                </div>
+                                <a href="#">
+                                    <span>Go to service</span>
+                                    <span class="icon-button">
+                                    <i class="ph-caret-right-bold"></i>
+                                </span>
+                                </a>
+                            </article>
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="ph-file-light"></i>
+                                    <h3>
+                                        <span>Tax online</span>
+                                        <span>Kharkov 62 str.</span>
+                                    </h3>
+                                </div>
+                                <a href="#">
+                                    <span>Go to service</span>
+                                    <span class="icon-button">
+                                    <i class="ph-caret-right-bold"></i>
+                                </span>
+                                </a>
+                            </article>
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <div style="position: relative;top: -15%;" class="token">
+                    <div class="containerCT">
+
+                        <div style="display:flex;  justify-content:end;">
+                            <div style="display:flex; margin-bottom:20px">
+                                <button id="add" class="addCT">+ New token</button>
+
+
                             </div>
+                        </div>
 
 
-                            <div class="sectionCT">
-                                <table class="tableCT">
+                        <div class="sectionCT">
 
-                                    <thead style="background:rgba(189,200,255,.091); width:2rem;">
-                                    <tr>
-                                        <th class="thtd">Name</th>
-                                        <th class="thtd">Onboarding</th>
-                                        <th class="thtd">Token</th>
-                                        <th class="thtd">Permission</th>
-                                        <th class="thtd">Last Used</th>
-                                        <th class="thtd">Created</th>
-                                    </tr>
-                                    </thead>
+                            <table class="tableCT">
 
-                                    <tbody><tr>
-                                        <td>Onboarding</td>
-                                        <td>‒‒‒‒‒‒‒‒‒</td>
-                                        <td>re_QuvsQCTS...</td>
-                                        <td>Sending access</td>
-                                        <td>1 day ago</td>
-                                        <td>25 days ago</td>
-                                    </tr>
+                                <thead style="background:rgba(189,200,255,.091); width:2rem;">
+                                <tr>
+                                    <th class="thtd">Name</th>
+                                    <th class="thtd">Token</th>
+                                    <th class="thtd">Permission</th>
+                                    <th class="thtd">Created</th>
+                                    <th class="thtd">Expiration</th>
 
+                                </tr>
+                                </thead>
 
-                                    <tr>
-                                        <td>Onboarding</td>
-                                        <td>‒‒‒‒‒‒‒‒‒</td>
-                                        <td>re_QuvsQCTS...</td>
-                                        <td>Sending access</td>
-                                        <td>1 day ago</td>
-                                        <td>25 days ago</td>
-                                    </tr>
-                                    </tbody></table>
+                                <tbody>
+                                <tr th:each="token : ${tokens}">
+                                    <td th:text="${#strings.length(token.name) <= 10 ? token.name : #strings.substring(token.name, 0, 10) + '...'}"
+                                        style="text-align: left; padding-left: .75rem;"></td>
+                                    <td style="text-align: initial;">
+                                        <span th:text="${token.token}" class="truncated-text"></span>
+                                    </td>
+                                    <td th:text="${token.access}"></td>
+                                    <td th:text="${#strings.length(token.create) <= 10 ? token.create : #strings.substring(token.create, 0, 10)+ ' ' }"></td>
+                                    <td th:text="${#strings.length(token.expiration) <= 10 ? token.expiration : #strings.substring(token.expiration, 0, 10)+ ' ' }"></td>
+                                    <td style="border-top-width: 0px;border-bottom-width: 0px;text-align: center;position: absolute;right: 9px;margin-top: 2.5px;">
+
+                                        <button class="buttonCopy"   th:attr="data-tokenid=${token.id}" onclick="mostrarMenu(this)">
+                                            <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                                 class="svgIconCopy" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12Z"
+                                                      fill="currentColor"></path>
+                                                <path d="M9 12C9 12.5523 8.55228 13 8 13C7.44772 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11C8.55228 11 9 11.4477 9 12Z"
+                                                      fill="currentColor"></path>
+                                                <path d="M17 12C17 12.5523 16.5523 13 16 13C15.4477 13 15 12.5523 15 12C15 11.4477 15.4477 11 16 11C16.5523 11 17 11.4477 17 12Z"
+                                                      fill="currentColor"></path>
+                                            </svg>
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div th:if="${empty}" th:attr="data-successEm=${empty}" style="display: flex;justify-content: center;margin-top: 30px;">
+                               <span>No tienes tokens, crea uno</span>
                             </div>
 
                         </div>
-
-                        <div class="container2CT">
-
-                            <h2>Add new token</h2>
-                            <button id="closeadd" class="closeAddCT">
-
-                                <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" style="display:block">
-                                    <path d="M17.25 6.75L6.75 17.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                                    <path d="M6.75 6.75L17.25 17.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                                </svg>
-
-                            </button>
-
-                            <form action="/crearToken" method="POST">
-                                <div class="boxCT">
-                                    <label class="labelCT">Nombre</label>
-                                    <input class="inputCT" placeholder="Your Token name">
-                                </div>
-
-                                <div class="boxCT">
-                                    <label class="labelCT">Permisos</label>
-
-                                    <select class="dropdownCT" name="lenguajes" id="lang">
-
-                                        <option value="full">Acceso total</option>
-
-                                        <option value="create">Crear</option>
-
-                                        <option value="read">Consultar datos</option>
-
-                                        <option value="delete">Eliminar datos</option>
-
-                                        <option value="update">Actualizar datos</option>
+                        <div id="menu" class="menu" style="display: none;">
 
 
 
-                                    </select>
-                                </div>
+                            <div  style="display:flex">
+                                <button class="copy">
+                                <span data-text-end="Copied!" data-text-initial="Copy to clipboard"
+                                      class="tooltip"></span>
+                                    <span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 13.1251L20 6.00003C20 4.34317 18.6568 3.00002 17 3.00003L9.875 3.00012M14 21.0001L7.25 21.0001C6.00736 21.0001 5 19.9928 5 18.7501L5 9.00012C5 7.75747 6.00736 6.75011 7.25 6.75011L14 6.75011C15.2426 6.75011 16.25 7.75747 16.25 9.00011L16.25 18.7501C16.25 19.9928 15.2426 21.0001 14 21.0001Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                  </span>
+                                    <span class="spanH">Copiar</span>
+                                </button>
 
-                                <div class="boxCT">
-                                    <label class="labelCT">Duración</label>
-                                    <input class="inputCT" id="dateInput" name="dateInput" placeholder="dd/mm/yyyy">
-                                </div>
+                            </div>
 
-                                <div class="button-boxCT">
-                                    <button class="add-buttonCT">Add</button>
-                                    <button class="cancel-buttonCT">Cancel</button>
+
+
+
+                            <form action="/deleteToken" method="POST">
+                                <input type="hidden" id="tokenid" name="tokenid" />
+                                <div class="svg-container" style="display:flex; border-radius: 5px;" type="submit">
+
+                                    <button class="copy" type="submit">
+                                        <span>
+                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                                <path d="M4 6.17647H20M9 3H15M15.5 21H8.5C7.39543 21 6.5 20.0519 6.5 18.8824L6.0434 7.27937C6.01973 6.67783 6.47392 6.17647 7.04253 6.17647H16.9575C17.5261 6.17647 17.9803 6.67783 17.9566 7.27937L17.5 18.8824C17.5 20.0519 16.6046 21 15.5 21Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                            </svg>
+                                        </span>
+                                        <span class="spanH">Borrar</span>
+                                    </button>
+
                                 </div>
                             </form>
 
-
-                            <div class="calendar" id="calendar" style="display: none;">
-                                <div class="headerCT">
-                                    <button id="prevBtn">&lt;</button>
-                                    <h2 class="h2CT" id="monthYear">enero 2024</h2>
-                                    <button id="nextBtn">&gt;</button>
-                                </div>
-                                <div class="days" id="daysContainer"><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day current">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div></div>
-                            </div>
-
-
                         </div>
                     </div>
-                    <div class="addProduct">
-                        <form action="/guardar" method="POST" enctype="multipart/form-data" class="form">
+
+                    <div class="container2CT">
+
+                        <h2>Add new token</h2>
+                        <button id="closeadd" class="closeAddCT">
+
+                            <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                 xmlns="http://www.w3.org/2000/svg" style="display:block">
+                                <path d="M17.25 6.75L6.75 17.25" stroke="currentColor" stroke-linecap="round"
+                                      stroke-linejoin="round" stroke-width="1.5"></path>
+                                <path d="M6.75 6.75L17.25 17.25" stroke="currentColor" stroke-linecap="round"
+                                      stroke-linejoin="round" stroke-width="1.5"></path>
+                            </svg>
+
+                        </button>
+
+                        <form action="/crearToken" method="POST">
+                            <div class="boxCT">
+                                <label class="labelCT">Nombre</label>
+                                <input class="inputCT" id="nameToken" name="nameToken" placeholder="Your Token name">
+                            </div>
+
+                            <div class="boxCT">
+                                <label class="labelCT">Permisos</label>
+
+                                <select class="dropdownCT" name="permisos" id="permisos">
+
+                                    <option value="full">Acceso total</option>
+
+                                    <option value="create">Crear</option>
+
+                                    <option value="read">Consultar datos</option>
+
+                                    <option value="delete">Eliminar datos</option>
+
+                                    <option value="update">Actualizar datos</option>
 
 
+                                </select>
+                            </div>
 
-                            <div class="element-1" style="width: 300px;height: auto; margin-left:40px;">
-                                <div class="grid">
-                                    <div class="card">
+                            <div class="boxCT">
+                                <label class="labelCT">Duración</label>
+                                <input class="inputCT" id="dateInput" name="dateInput" placeholder="dd/mm/yyyy">
+                            </div>
+
+                            <div class="button-boxCT">
+                                <button class="add-buttonCT">Add</button>
+                                <button class="cancel-buttonCT">Cancel</button>
+                            </div>
+                        </form>
+
+
+                        <div class="calendar" id="calendar" style="display: none;">
+                            <div class="headerCT">
+                                <button id="prevBtn">&lt;</button>
+                                <h2 class="h2CT" id="monthYear">enero 2024</h2>
+                                <button id="nextBtn">&gt;</button>
+                            </div>
+                            <div class="days" id="daysContainer">
+                                <div class="day">1</div>
+                                <div class="day">2</div>
+                                <div class="day">3</div>
+                                <div class="day">4</div>
+                                <div class="day">5</div>
+                                <div class="day">6</div>
+                                <div class="day">7</div>
+                                <div class="day">8</div>
+                                <div class="day">9</div>
+                                <div class="day">10</div>
+                                <div class="day">11</div>
+                                <div class="day">12</div>
+                                <div class="day">13</div>
+                                <div class="day current">14</div>
+                                <div class="day">15</div>
+                                <div class="day">16</div>
+                                <div class="day">17</div>
+                                <div class="day">18</div>
+                                <div class="day">19</div>
+                                <div class="day">20</div>
+                                <div class="day">21</div>
+                                <div class="day">22</div>
+                                <div class="day">23</div>
+                                <div class="day">24</div>
+                                <div class="day">25</div>
+                                <div class="day">26</div>
+                                <div class="day">27</div>
+                                <div class="day">28</div>
+                                <div class="day">29</div>
+                                <div class="day">30</div>
+                                <div class="day">31</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="addProduct">
+                    <form action="/guardar" method="POST" enctype="multipart/form-data" class="form">
+
+
+                        <div class="element-1" style="width: 300px;height: auto; margin-left:120px;">
+                            <div class="grid">
+                                <div class="card">
                     <span class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="-3 -3 30 30" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="-3 -3 30 30" fill="none"
+                             stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
                     </span>
-                                        <h4>Image 1</h4>
+                                    <h4>Image 1</h4>
 
 
-                                        <span class="dragBox">
+                                    <span class="dragBox">
 
                             <div class="img" id="preview">
                                 <h5>Darg and Drop image here</h5>
                             </div>
 
-                            <input type="file" class="areadrop" onchange="dragNdrop(event,'preview')" ondragover="drag()" ondrop="drop()" name="uploadFile" id="uploadFile" required="" accept="image/*">
+                            <input type="file" class="areadrop" onchange="dragNdrop(event,'preview')"
+                                   ondragover="drag()" ondrop="drop()" name="uploadFile" id="uploadFile" required=""
+                                   accept="image/*">
                     </span>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="section">
+                        <div class="section">
 
-                                <div class="one">
+                            <div class="one">
 
-                                    <div th:if="${error}" th:attr="data-error=${error}"></div>
-                                    <div th:if="${success}" th:attr="data-success=${success}"></div>
+                                <div th:if="${error}" th:attr="data-error=${error}"></div>
+                                <div th:if="${success}" th:attr="data-success=${success}"></div>
 
-                                    <input type="text" id="name" class="aks-input" placeholder="Name" name="name" required="">
-                                    <input type="text" id="price" class="price" placeholder="$-Price" name="price" maxlength="11" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" required="" style="position:absolute; top:50%">
-                                    <textarea id="descripcion" placeholder="Description" name="descripcion" required="" style="resize:none; top:90px; position:absolute; height:150px; width:250px;border-radius: 7px;border: 0.1rem solid #bbc1e1;padding: 10px;"></textarea>
-                                    <input type="number" id="quantity" class="price" placeholder="in Stock" name="quantity" required="" style="position:absolute; top:60%; width:100px;">
-                                    <input type="text" id="category" class="price" placeholder="Category" name="category" required="" style="position:absolute; top:50%; right:90px;">
-                                    <div class="group" style="display:flex; line-height:30px; max-width:200px; top:90%; margin-left: 35px; position:absolute;">
-
-
-                                        <svg class="iconTS" xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path>
-                                            <title id="title">Token válido</title>
-                                        </svg>
-
-                                        <svg class="iconTE" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"></path>
-                                            <title id="title">Token vencido, genere uno nuevo</title>
-                                        </svg>
-
+                                <input type="text" id="name" class="aks-input" placeholder="Name" name="name"
+                                       required="">
+                                <input type="text" id="price" class="price" placeholder="$-Price" name="price"
+                                       maxlength="11" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value=""
+                                       data-type="currency" required="" style="position:absolute; top:49%;">
+                                <textarea id="descripcion" placeholder="Description" name="descripcion" required=""
+                                          style="resize:none; top:87px; position:absolute; height:80px; width:250px;border-radius: 7px;border: 0.1rem solid #bbc1e1;padding: 10px;"></textarea>
+                                <input type="number" id="quantity" class="price" placeholder="STK" name="quantity"
+                                       required="" style="position:absolute; top:49%; width:70px;right: 14px;">
+                                <input type="text" id="category" class="price" placeholder="Category" name="category"
+                                       required="" style="position:absolute; top:49%; right:86px;">
+                                <div class="group"
+                                     style="display:flex; line-height:30px; /*! max-width:200px; */ top:63%;  position:absolute;">
 
 
-                                        <input id="token" name="token" class="input" th:value="${token}" readonly type="text">
-                                    </div>
-                                    <input type="submit" value="Create" class="btn-form" style="position:absolute; top:70%;">
+                                    <svg class="iconTS" xmlns="http://www.w3.org/2000/svg" height="16" width="14"
+                                         viewBox="0 0 448 512">
+                                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path fill="#ffffff"
+                                              d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path>
+                                        <title id="title">Token válido</title>
+                                    </svg>
+
+                                    <svg class="iconTE" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+                                         viewBox="0 0 384 512">
+                                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path fill="#ffffff"
+                                              d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"></path>
+                                        <title id="title">Token vencido, genere uno nuevo</title>
+                                    </svg>
 
 
+                                    <input id="token" name="token" class="input" th:value="${token}" readonly
+                                           type="text">
                                 </div>
 
-
-
+                                <button class="button-form" style="position:absolute; top:80%;">
+                                    <span>Guardar</span>
+                                </button>
 
 
 
                             </div>
 
-                            <div class="element-3" style="width: 300px;height: auto; margin-left:40px; ">
-                                <div class="grid">
-                                    <div class="card" style="margin-top: -30px;">
+
+                        </div>
+
+                        <div class="element-3" style="width: 300px;height: auto; margin-left:120px; ">
+                            <div class="grid">
+                                <div class="card" style="margin-top: -30px;">
                     <span class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="-3 -3 30 30" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="-3 -3 30 30" fill="none"
+                             stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
                         </svg>
                     </span>
-                                        <h4>Image 2</h4>
+                                    <h4>Image 2</h4>
 
 
-                                        <span class="dragBox">
+                                    <span class="dragBox">
 
                         <div class="img" id="preview2">
                             <h5>Darg and Drop image here</h5>
                         </div>
 
-                        <input type="file" class="areadrop" onchange="dragNdrop(event,'preview2')" ondragover="drag()" ondrop="drop()" name="uploadFile2" id="uploadFile2" required="" accept="image/*">
+                        <input type="file" class="areadrop" onchange="dragNdrop(event,'preview2')" ondragover="drag()"
+                               ondrop="drop()" name="uploadFile2" id="uploadFile2" required="" accept="image/*">
                     </span>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </form>
-
-                    </div>
-                    <div class="ViewAllP">
-                        <h1>Aquí va la pagina para ver todos los productos</h1>
-                    </div>
-                    <div class="Photo">
-                        <h1>Aquí va la pagina para ver las fotos de los productos</h1>
-
-                    </div>
+                    </form>
 
                 </div>
 
 
+                <div class="ViewAllP">
+                    <h1>Aquí va la pagina para ver todos los productos</h1>
+                </div>
+
+
+                <div class="Photo">
+                    <h1>Aquí va la pagina para ver las fotos de los productos</h1>
+
+                </div>
+
             </div>
+
+
         </div>
     </div>
+</div>
 
-    <body>
-    <script src="../static/css/JavaSD.js" th:src="@{/css/JavaSD.js}"></script>
-    <script src="../static/css/AddToke.js" th:src="@{/css/AddToke.js}"></script>
-    <script src="../static/css/javaTest.js" th:src="@{/css/javaTest.js}"></script>
-    </body>
+<body>
+<script src="../static/css/JavaSD.js" th:src="@{/css/JavaSD.js}"></script>
+<script src="../static/css/AddToke.js" th:src="@{/css/AddToke.js}"></script>
+<script src="../static/css/javaTest.js" th:src="@{/css/javaTest.js}"></script>
+</body>
 
 </html>

@@ -25,13 +25,13 @@
 
 body {
 	line-height: 1.5;
-	min-height: 100vh;
+	min-height: 97vh;
 	font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 	background-color: var(--c-gray-personal);
 	color: var(--c-text-primary);
 	display: flex;
 	padding-top: 3vw;
-	padding-bottom: 3vw;
+	/*! padding-bottom: 3vw; */
 	justify-content: center;
 }
 
@@ -66,12 +66,13 @@ a {
 
 .app {
 	min-height: 91vh;
-	width: 95%;
-	/*! height: 156%; */
+	width: 91%;
+	height: 156%;
 	background-color: var(--c-gray-800);
 	padding: 2vw 4vw 6vw;
 	display: flex;
 	flex-direction: column;
+	border-radius: 25px;
 }
 
 .app-header {
@@ -145,9 +146,9 @@ a {
 .app-body-navigation {
 	display: flex;
      flex-direction: column;
-     justify-content: space-between;
-     width: 153%;
-     height: 100%;
+     justify-content: normal;
+     width: 271%;
+     height: 192%;
 	@media (max-width: 1200px) {
 		display: none;
 	}
@@ -157,7 +158,7 @@ a {
 }
 
 .footer {
-	/*! top: 70%; */
+	top: 93%;
 	h1 {
 		font-size: 1.5rem;
 		line-height: 1.125;
@@ -176,8 +177,8 @@ a {
 		font-size: 0.75rem;
 		color: var(--c-text-tertiary);
 	}
-	/*! position: fixed; */
-	margin-bottom: 20px;
+	position: absolute;
+	/*! margin-bottom: 18px; */
 }
 
 .logo {
@@ -555,7 +556,7 @@ a {
 top:29%;
 position:absolute;
 width: 70%;
-height: 70%;
+height: 47%;
 left: 21%;
 }
 

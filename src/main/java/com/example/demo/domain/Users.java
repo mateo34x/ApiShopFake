@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,10 +27,34 @@ public class Users {
     private String password;
     private String fullname;
 
-    private String token;
     private boolean enabled;
     @DBRef
     private Set<Role> roles;
+
+    private List<Tokens> tokens;
+
+
+
+
+
+    public void agregarToken(Tokens nuevoToken) {
+        if (tokens == null) {
+            tokens = new ArrayList<>();
+        }
+        tokens.add(nuevoToken);
+
+    }
+
+    public Tokens obtenerUltimoToken() {
+        if (tokens != null && !tokens.isEmpty()) {
+            return tokens.get(tokens.size() - 1);
+        } else {
+            return null; // Manejar el caso donde no hay tokens
+        }
+    }
+
+
+
 
     public String getId() {
         return id;
@@ -46,12 +72,12 @@ public class Users {
         this.email = email;
     }
 
-    public String getToken() {
-        return token;
+    public List<Tokens> getTokens() {
+        return tokens;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setTokens(List<Tokens> tokens) {
+        this.tokens = tokens;
     }
 
     public String getPassword() {

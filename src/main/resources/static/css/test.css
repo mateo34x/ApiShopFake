@@ -1,7 +1,7 @@
 
 body {
 
-    min-height: 100vh;
+    /*! min-height: 100vh; */
       display: flex;
       font-family: 'Inter', Arial;
       justify-content: center;
@@ -231,21 +231,22 @@ display: grid;
 
 .section{
 
-  background-color: var(--background-color);
-  background-image: radial-gradient(at 47% 69%, hsl(272.8, 100%, 57.3%) 0px, transparent 50%), radial-gradient(at 9% 32%, hsl(222.4, 75.4%, 60.2%) 0px, transparent 50%);
+  /*! background-color: #000; */
+  /*! background-image: radial-gradient(at 47% 69%, hsl(0, 0%, 0%) 0px, black 50%), radial-gradient(at 9% 32%, hsl(0, 0%, 0%) 0px, #000 50%); */
   border-radius: 10px;
   /*! padding: 2em; */
   line-height: 1.6;
   overflow: hidden;
-  margin-bottom: -15rem;
+  margin-bottom: -7rem;
   position: relative;
   font-size: 0.875rem;
-  width: 392px;
+  width: 340px;
   /*! height: fit-content; */
-  right: 40px;
-  border-radius: 30px;
+  right: 37px;
+  border-radius: 20px;
   transition: 0.3s ease;
 
+  box-shadow: 0px var(--card-box-shadow-1-y) var(--card-box-shadow-1-blur) var(--card-box-shadow-1), 0px var(--card-box-shadow-2-y) var(--card-box-shadow-2-blur) var(--card-box-shadow-2), 0 0 0 1px var(--card-border-color);
 }
 
 
@@ -255,13 +256,13 @@ display: grid;
   height: 100%;
   z-index: 10;
   position: absolute;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgb(28, 28, 31);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   /*! border: 1px solid rgba(255, 255, 255, 0.18); */
-  padding: 3.5em;
+  padding: 2.5em;
 }
 
 

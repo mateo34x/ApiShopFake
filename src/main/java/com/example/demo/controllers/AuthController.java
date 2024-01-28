@@ -3,14 +3,21 @@ package com.example.demo.controllers;
 
 import com.example.demo.GroceryItem;
 import com.example.demo.ItemRepository;
+import com.example.demo.SecurityID.IDSe;
 import com.example.demo.UserRepository;
+import com.example.demo.domain.Tokens;
 import com.example.demo.domain.Users;
 import com.example.demo.services.CustomUserDetailsService;
 import com.resend.Resend;
 import com.resend.core.exception.ResendException;
 import com.resend.services.emails.model.SendEmailRequest;
 import com.resend.services.emails.model.SendEmailResponse;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,8 +28,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -33,6 +41,13 @@ public class AuthController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+
+    @Autowired
+    private IDSe idSe;
 
 
     @Autowired
@@ -67,7 +82,35 @@ public class AuthController {
 
         } else {
             String token = JwtTokenUtil.generateToken(user.getEmail(),"");
-            userService.saveUser(user,token);
+
+            Tokens tokenFirts = new Tokens();
+            tokenFirts.setName("Token Registre");
+            tokenFirts.setAccess("All");
+
+            Date currentDate = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            String formattedDate = dateFormat.format(currentDate);
+
+            tokenFirts.setCreate(formattedDate);
+
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(currentDate);
+            calendar.add(Calendar.HOUR_OF_DAY, 24);
+            Date expirationDate = calendar.getTime();
+            String formattedExpirationDate = dateFormat.format(expirationDate);
+
+            tokenFirts.setExpiration(formattedExpirationDate);
+
+            tokenFirts.setToken(token);
+
+
+            long expirationTime = System.currentTimeMillis() + 24*60*60*1000;
+
+            tokenFirts.setCreateL(System.currentTimeMillis()/1000);
+            tokenFirts.setExpirationL(expirationTime/1000);
+
+            userService.saveUser(user,tokenFirts);
             modelAndView.addObject("success", true);
             modelAndView.addObject("title", "Welcome");
             modelAndView.addObject("message", " registered successfully");
@@ -106,23 +149,56 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView dashboard() {
+    public ModelAndView dashboard(String externo) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Users user = userService.findUserByEmail(auth.getName());
         System.out.println(auth.getName());
         System.out.println(user.getFullname());
+        System.out.println(user.getId());
         String username = user.getFullname();
         modelAndView.addObject("currentUser", username);
         modelAndView.addObject("fullName",username);
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-        modelAndView.addObject("token", user.getToken());
-        if (JwtTokenUtil.validateToken(user.getToken())){
-            modelAndView.addObject("success",true);
-        }else{
-            modelAndView.addObject("error",true);
+
+
+
+        Tokens ultimoToken = user.obtenerUltimoToken();
+
+        if (ultimoToken != null) {
+
+            modelAndView.addObject("token", ultimoToken.getToken());
+        } else {
+            modelAndView.addObject("token", "genere un token");
         }
 
+
+        if (ultimoToken != null){
+
+            if (JwtTokenUtil.validateToken(ultimoToken.getToken())) {
+
+                modelAndView.addObject("success",true);
+            }else{
+                modelAndView.addObject("error",true);
+            }
+        }else{
+            modelAndView.addObject("empty", true);
+        }
+
+
+
+        List<Tokens> tokens = userService.obtenerTodosLosTokens();
+        List<Tokens> tokensOrdenados = tokens.stream()
+                .sorted(Comparator.comparing(Tokens::getCreateL).reversed())
+                .collect(Collectors.toList());
+        modelAndView.addObject("tokens", tokensOrdenados);
+
+
+        if (externo != null && !externo.isEmpty()) {
+            modelAndView.addObject("tokenA", true);
+        } else {
+            modelAndView.addObject("tokenA", false);
+        }
 
         modelAndView.setViewName("dashboard");
         return modelAndView;
@@ -135,46 +211,93 @@ public class AuthController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/formulario"}, method = RequestMethod.GET)
-    public ModelAndView mostrarFormulario() {
-        ModelAndView modelAndView = new ModelAndView();
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Users user = userService.findUserByEmail(auth.getName());
-        String tokenGenerated = user.getToken();
-        if (JwtTokenUtil.validateToken(tokenGenerated)){
-            modelAndView.addObject("success",true);
-        }else{
-            modelAndView.addObject("error",true);
-        }
-        modelAndView.addObject("token", tokenGenerated);
-        modelAndView.setViewName("formtest");
-        return modelAndView;
-    }
 
-    @RequestMapping(value = {"/createT"}, method = RequestMethod.GET)
-    public ModelAndView mostrarAddToken() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("formulario");
-        return modelAndView;
-    }
+
 
 
     @PostMapping("/crearToken")
-    public Object crearToken(@RequestParam("dateInput") String exp) throws ParseException {
+    public Object crearToken(
+            @RequestParam("dateInput") String exp,
+            @RequestParam("permisos")String per,
+            @RequestParam("nameToken")String nametoken ) throws ParseException {
 
 
-        // Imprimir el número de milisegundos.
+
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Users user = userService.findUserByEmail(auth.getName());
         String token = JwtTokenUtil.generateToken(user.getEmail(),exp);
-        userService.updateToken(user,token);
 
-        return dashboard();
+        Tokens tokenFirts = new Tokens();
+        tokenFirts.setName(nametoken);
+        tokenFirts.setAccess(per);
+
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String formattedDate = dateFormat.format(currentDate);
+
+        tokenFirts.setCreate(formattedDate);
+
+
+
+        tokenFirts.setToken(token);
+
+
+        LocalDateTime horaActual = LocalDateTime.now();
+
+        int hora = horaActual.getHour();
+        int minutos = horaActual.getMinute();
+        int segundos = horaActual.getSecond();
+
+        String Hms = String.format("%02d:%02d:%02d", hora, minutos, segundos);
+
+        long expirationL = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(exp+" "+Hms).getTime() / 1000;
+        String expiration = exp+" "+Hms;
+
+
+        tokenFirts.setExpiration(expiration);
+
+        tokenFirts.setCreateL(System.currentTimeMillis()/1000);
+        tokenFirts.setExpirationL(expirationL);
+        tokenFirts.setId(IDSe.generateUuid());
+
+
+        userService.addToken(user,tokenFirts);
+        return dashboard(" active");
 
 
     }
+
+
+    @PostMapping("/deleteToken")
+    public Object eliminarTokenPorId(@RequestParam(name = "tokenid") String tokenId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Users user = userService.findUserByEmail(auth.getName());
+
+
+
+
+
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(user.getId()));
+
+        Query innerQuery = new Query();
+        innerQuery.addCriteria(Criteria.where("_id").is(tokenId));
+
+
+
+
+        Update update = new Update();
+        update.pull("tokens", innerQuery);
+
+        mongoTemplate.findAndModify(query, update, Users.class, "user");
+
+
+        return dashboard(" active");
+    }
+
+
 
 
 
