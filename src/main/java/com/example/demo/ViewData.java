@@ -26,7 +26,10 @@ public class ViewData {
 
     @RequestMapping("/findAll")
     @GetMapping(produces = "application/json")
-    public Object getAllData(@RequestParam("token") String token) {
+    public Object getAllData(@RequestHeader("Authorization") String AuthorizationHeader) {
+
+        String token = extractToken(AuthorizationHeader);
+
         if (JwtTokenUtil.validateToken(token)) {
             return groceryItemRepo.findAll();
         } else {
@@ -34,6 +37,13 @@ public class ViewData {
         }
     }
 
+
+    private String extractToken(String authorizationHeader) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7);
+        }
+        return null;
+    }
 
 
 
