@@ -30,7 +30,6 @@ public class ViewData {
         if (JwtTokenUtil.validateToken(token)) {
             return groceryItemRepo.findAll();
         } else {
-            // Aquí puedes manejar la respuesta de error, por ejemplo, devolver un objeto ResponseEntity con un mensaje de error.
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token no válido");
         }
     }
