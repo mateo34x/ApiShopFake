@@ -109,6 +109,7 @@ public class AuthController {
 
             tokenFirts.setCreateL(System.currentTimeMillis()/1000);
             tokenFirts.setExpirationL(expirationTime/1000);
+            tokenFirts.setId(IDSe.generateUuid());
 
             userService.saveUser(user,tokenFirts);
             modelAndView.addObject("success", true);
