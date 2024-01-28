@@ -125,7 +125,7 @@ function mostrarMenu(boton) {
             menu.style.display = 'grid';
 
            var rect = boton.getBoundingClientRect();
-           menu.style.left = 1150.05 + 'px';
+           menu.style.left = rect.left + 'px';
            menu.style.top = rect.bottom + 'px';
 
       }
