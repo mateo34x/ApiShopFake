@@ -15,79 +15,134 @@
     <link rel="icon"
           href="https://res.cloudinary.com/dtljcfmr3/image/upload/v1701396595/WhatsApp_Image_2023-11-20_at_9.19.01_PM_qwhxsd.jpg"
           type="image/png">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+    <link href='https://fonts.googleapis.com/css?family=K2D' rel='stylesheet'>
 
 
 </head>
 
 
 <div class="app">
-    <header class="app-header">
-        <div class="app-header-logo">
-            <div class="logo">
-                    <span class="logo-icon">
-                        <img src="https://res.cloudinary.com/dtljcfmr3/image/upload/v1701396857/WhatsApp_Image_2023-11-20_at_9.19.01_PM-removebg-preview_1_phyhcq.png">
-                    </span>
 
-            </div>
-        </div>
-        <div class="app-header-navigation" style="margin-bottom: 30px;margin-left: -40px;">
-
-            <h1 id="tituloPagina"></h1>
-
-        </div>
-        <div class="app-header-actions">
-            <button class="user-profile">
-                <span th:text="${fullName}"></span>
-                <span>
-                        <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg">
-                    </span>
-            </button>
-
-        </div>
-        <div class="app-header-mobile">
-            <button class="icon-button large">
-                <i class="ph-list"></i>
-            </button>
-        </div>
-
-    </header>
     <div class="app-body">
         <div class="app-body-navigation">
-            <nav class="navigation">
-                <a href="#" onclick="toggleSection('dashboard');">
-                    <i class="ph-browsers"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="#" onclick="toggleSection('token');">
-                    <i class="ph-browsers"></i>
-                    <span>Tokens</span>
-                </a>
 
 
-                <a href="#" onclick="toggleSection('addProduct');">
-                    <i class="ph-browsers"></i>
-                    <span>Add Product</span>
-                </a>
-
-                <a href="#" onclick="toggleSection('ViewAllP');">
-                    <i class="ph-browsers"></i>
-                    <span>View All Products</span>
-                </a>
-
-                <a href="#" onclick="toggleSection('Photo');">
-                    <i class="ph-browsers"></i>
-                    <span>Photos Product</span>
-                </a>
+            <div  class="sidebard">
+                <ol style="margin-left: -25px;">
 
 
-            </nav>
 
-            <footer class="footer">
-                Logout
-            </footer>
+                    <li>
+                        <div style="display:flex; margin-bottom:30px;">
+
+
+                            <div class="cube">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#ffffff" d="m1.33 19l-.6-1.036l4.33-2.5L7.103 19zm13.856 0H9.412l-3.619-6.268l4.33-2.5zm8.083 0h-5.774l-6.64-11.5l4.33-2.5z"/></svg>
+                            </div>
+
+                            <span  class="titleside" >Adidas API</span>
+
+
+
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <div  class="containerside" onclick="toggleSection('dashboard');">
+                            <svg class="svgside" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m9.02 2.84-5.39 4.2C2.73 7.74 2 9.23 2 10.36v7.41c0 2.32 1.89 4.22 4.21 4.22h11.58c2.32 0 4.21-1.9 4.21-4.21V10.5c0-1.21-.81-2.76-1.8-3.45l-6.18-4.33c-1.4-.98-3.65-.93-5 .12ZM12 17.99v-3"/>
+                            </svg>
+
+
+                            <span class="ItemName">Dashboard</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div  class="containerside" onclick="toggleSection('token');">
+                            <svg class="svgside" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.91 11.12c0 4.89-3.55 9.47-8.4 10.81-.33.09-.69.09-1.02 0-4.85-1.34-8.4-5.92-8.4-10.81V6.73c0-.82.62-1.75 1.39-2.06l5.57-2.28c1.25-.51 2.66-.51 3.91 0l5.57 2.28c.76.31 1.39 1.24 1.39 2.06l-.01 4.39Z"/>
+                            </svg>
+
+                            <span class="ItemName">Tokens</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="containerside" onclick="toggleSection('addProduct');">
+                            <svg class="svgside" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M7.5 7.67V6.7c0-2.25 1.81-4.46 4.06-4.67a4.5 4.5 0 0 1 4.94 4.48v1.38M9 22h6c4.02 0 4.74-1.61 4.95-3.57l.75-6C20.97 9.99 20.27 8 16 8H8c-4.27 0-4.97 1.99-4.7 4.43l.75 6C4.26 20.39 4.98 22 9 22Z"/>
+                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.495 12h.01m-7.01 0h.008"/>
+                            </svg>
+
+
+
+                            <span  class="ItemName">New Product</span>
+
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <div class="containerside" onclick="toggleSection('ViewAllP');">
+                            <svg class="svgside" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 7v10c0 .62-.02 1.17-.09 1.66C17.62 21.29 16.38 22 13 22h-2c-3.38 0-4.62-.71-4.91-3.34C6.02 18.17 6 17.62 6 17V7c0-.62.02-1.17.09-1.66C6.38 2.71 7.62 2 11 2h2c3.38 0 4.62.71 4.91 3.34.07.49.09 1.04.09 1.66Z"/>
+                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 17c0 .62.02 1.17.09 1.66-.14.01-.27.01-.42.01h-.34C2.67 18.67 2 18 2 15.33V8.67C2 6 2.67 5.33 5.33 5.33h.34c.15 0 .28 0 .42.01C6.02 5.83 6 6.38 6 7v10Zm16-8.33v6.66c0 2.67-.67 3.34-3.33 3.34h-.34c-.15 0-.28 0-.42-.01.07-.49.09-1.04.09-1.66V7c0-.62-.02-1.17-.09-1.66.14-.01.27-.01.42-.01h.34C21.33 5.33 22 6 22 8.67Z"/>
+                            </svg>
+
+                            <span class="ItemName">All Product</span>
+
+                        </div>
+                    </li>
+
+                    <li style="position:absolute; bottom:-10px;">
+                        <div class="containerProfile">
+
+                            <div >
+                                <img class="imgUser" th:src="${fullImgUser}">
+                            </div>
+                            <div class="dataUserP">
+                                <span th:text="${#strings.length(fullName) <= 15 ? fullName : #strings.substring(fullName, 0, 15)}" style="font-size: 13px; margin-left:7px;color:white; width:200px;"></span>
+                                <span th:text="${fullEmail}" style="font-size: 13px; margin-left:7px;color:#999"></span>
+                            </div>
+
+                            <div class="btnLogout">
+
+                                <form th:action="@{/logout}" method="post">
+                                    <button type="submit" style="background:transparent">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.9 7.56c.31-3.6 2.16-5.07 6.21-5.07h.13c4.47 0 6.26 1.79 6.26 6.26v6.52c0 4.47-1.79 6.26-6.26 6.26h-.13c-4.02 0-5.87-1.45-6.2-4.99M15 12H3.62m2.23-3.35L2.5 12l3.35 3.35"/>
+                                        </svg>
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+
+
+                        </div>
+                    </li>
+
+                </ol>
+
+                <div id="btnO"  style="display:flex;width: 50px;height: 40px;align-items: center; margin-top:19px; margin-left:5px;">
+
+                    <svg  class="open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="m8.91 19.92 6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"/>
+                    </svg>
+
+
+
+                </div>
+
+
+
+            </div>
+
         </div>
-        <div class="app-body-main-content" style="min-width: 150vh;">
+        <div class="app-body-main-content" style="min-width: 130vh;">
 
             <div id="contenido" class="content">
 
@@ -272,7 +327,7 @@
                         <form action="/crearToken" method="POST">
                             <div class="boxCT">
                                 <label class="labelCT">Nombre</label>
-                                <input class="inputCT" id="nameToken" name="nameToken" placeholder="Your Token name">
+                                <input class="inputCT" id="nameToken" name="nameToken" placeholder="Your Token name" required>
                             </div>
 
                             <div class="boxCT">
@@ -284,26 +339,40 @@
 
                                     <option value="create">Crear</option>
 
-                                    <option value="read">Consultar datos</option>
+                                    <option value="read">Consultar</option>
 
-                                    <option value="delete">Eliminar datos</option>
+                                    <option value="update">Actualizar</option>
 
-                                    <option value="update">Actualizar datos</option>
+                                    <option value="delete">Eliminar</option>
+
+
 
 
                                 </select>
                             </div>
 
                             <div class="boxCT">
+
                                 <label class="labelCT">Duración</label>
-                                <input class="inputCT" id="dateInput" name="dateInput" placeholder="dd/mm/yyyy">
+                                <div  style="width: 24px;height: 24px;margin-left: 70px;margin-top: -28px;margin-bottom: 10px;">
+                                    <svg id="ca" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M8 2v3m8-3v3m0-1.5c3.33.18 5 1.45 5 6.15v6.18c0 4.12-1 6.18-6 6.18H9c-5 0-6-2.06-6-6.18V9.65c0-4.7 1.67-5.96 5-6.15h8Zm4.75 14.1H3.25"/>
+                                        <path fill="#fff" d="M12 8.25c-1.23 0-2.27.67-2.27 1.97 0 .62.29 1.09.73 1.39-.61.36-.96.94-.96 1.62 0 1.24.95 2.01 2.5 2.01 1.54 0 2.5-.77 2.5-2.01 0-.68-.35-1.27-.97-1.62.45-.31.73-.77.73-1.39 0-1.3-1.03-1.97-2.26-1.97Zm0 2.84c-.52 0-.9-.31-.9-.8 0-.5.38-.79.9-.79s.9.29.9.79c0 .49-.38.8-.9.8ZM12 14c-.66 0-1.14-.33-1.14-.93 0-.6.48-.92 1.14-.92.66 0 1.14.33 1.14.92 0 .6-.48.93-1.14.93Z"/>
+                                    </svg>
+
+                                </div>
+                                <input style="z-index:-10;"  class="inputCT" id="dateInput" name="dateInput" placeholder="mm/dd/yyyy" required >
+
+
                             </div>
 
                             <div class="button-boxCT">
                                 <button class="add-buttonCT">Add</button>
-                                <button class="cancel-buttonCT">Cancel</button>
+                                <button type="button" id="cancelButton" class="cancel-buttonCT">Cancel</button>
+
                             </div>
                         </form>
+
 
 
                         <div class="calendar" id="calendar" style="display: none;">
@@ -354,7 +423,7 @@
                 </div>
 
 
-                <div class="addProduct">
+                <div class="addProduct" style="padding-top:30px;">
                     <form action="/guardar" method="POST" enctype="multipart/form-data" class="form">
 
 
@@ -389,6 +458,7 @@
 
                                 <div th:if="${error}" th:attr="data-error=${error}"></div>
                                 <div th:if="${success}" th:attr="data-success=${success}"></div>
+                                <div th:if="${empty}" th:attr="data-empty=${empty}"></div>
 
                                 <input type="text" id="name" class="aks-input" placeholder="Name" name="name"
                                        required="">
@@ -418,7 +488,7 @@
                                         <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                         <path fill="#ffffff"
                                               d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"></path>
-                                        <title id="title">Token vencido, genere uno nuevo</title>
+                                        <title id="title" th:text="${info}"></title>
                                     </svg>
 
 
@@ -426,7 +496,7 @@
                                            type="text">
                                 </div>
 
-                                <button class="button-form" style="position:absolute; top:80%;">
+                                <button class="button-form" id="saveP" style="position:absolute; top:80%;">
                                     <span>Guardar</span>
                                 </button>
 
@@ -484,10 +554,12 @@
     </div>
 </div>
 
-<body>
+<body style="font-family: K2D;font-size: 17px;font-weight: bold;">
 <script src="../static/css/JavaSD.js" th:src="@{/css/JavaSD.js}"></script>
 <script src="../static/css/AddToke.js" th:src="@{/css/AddToke.js}"></script>
 <script src="../static/css/javaTest.js" th:src="@{/css/javaTest.js}"></script>
+<script src="../static/css/sidebar.js" th:src="@{/css/sidebar.js}"></script>
+
 </body>
 
 </html>

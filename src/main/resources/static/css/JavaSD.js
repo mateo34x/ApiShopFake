@@ -44,3 +44,13 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+
+window.onload = function () {
+            if (window.history && window.history.pushState) {
+                window.history.pushState('', null, window.location.href);
+                window.onpopstate = function () {
+                    window.history.pushState('', null, window.location.href);
+                };
+            }
+        };
+

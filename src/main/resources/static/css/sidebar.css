@@ -1,0 +1,220 @@
+.sidebard {
+  width: 71px;
+  display: flex;
+  border-radius: 10px;
+  background: linear-gradient(153deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(20px);
+  height: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.5s ease;
+  margin-top:25px;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 6px;
+}
+
+.ItemName {
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 10px;
+  color: #CCD1D6;
+  user-select: none;
+  display:none;
+}
+
+.containerside {
+  width: 56px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left:-8px;
+  transition: background-color 0.3s ease, border 0.3s ease; /* Agregado el cambio de border a la transiciÃ³n */
+  border: 1px solid transparent; /* Borde transparente en el estado normal */
+}
+
+.containerside:hover {
+  background: #1e1f24;
+  border: 1px solid #4f4f4fe5;
+  transition: background-color 0.3s ease, border 0.3s ease; /* Actualizado la transiciÃ³n para incluir el cambio de border */
+}
+
+.containerProfile {
+  width: 60px;
+  /*! background: #1e1f24; */
+  /*! border-radius: 10px; */
+  display:flex;
+  align-items:center;
+  margin-left:-11px;
+  padding: 10px;
+  /*! border: 1px solid #4f4f4fe5; */
+  transition: background-color 0.3s ease, border 0.3s ease; /* Actualizado la transiciÃ³n para incluir el cambio de border */
+}
+
+.containerside:hover .svgside path {
+  fill: #808080;
+}
+
+.containerside:hover .ItemName {
+  color: white;
+}
+
+.svgside{
+    width: 32px;
+    height: 32px;
+    transition: all 0.5s ease;
+}
+
+
+.titleside {
+
+  margin-top: 10px;
+  margin-left: 10px;
+  color: white;
+  display:none;
+}
+
+
+.cube{
+width:40px;
+height:40px;
+align-items:center;
+border:1px solid #4f4f4fe5;
+background: #1e1f24;
+display: flex;
+padding: 7px;
+border-radius:5px
+}
+
+
+.btnLogout{
+    display:none;
+    transition: all 0.5s ease;
+}
+
+.btnLogout.open{
+    display:flex;
+    opacity: 1;
+    margin-left: -60px;
+    margin-top: -14px;
+    animation: fadeIn 1s forwards;
+}
+
+
+
+
+.open.close{
+  transform: rotate(180deg);
+  transition: transform 0.4s ease;
+  margin-left: 9px;
+}
+
+.open{
+  transform: rotate(0deg);
+  transition: transform 0.4s ease;
+}
+
+.dataUserP{
+ display:flex;
+ flex-direction:column;
+ display:none;
+}
+
+
+
+
+
+
+.ItemName,
+{
+  opacity: 1;
+  animation: fadeOut 2s forwards;
+}
+
+
+.dataUserP{
+    opacity: 1;
+    animation: fadeOut 2s forwards;
+}
+
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.sidebard.open{
+ width:243px;
+}
+
+.titleside.open{
+    display:block ruby;
+}
+
+
+.containerside.open{
+    width:200px;
+    margin-left:-6px;
+}
+
+.svgside.open{
+    width:20px;
+    height:20px;
+}
+
+.ItemName.open{
+    display:initial;
+    margin-top: -4px;
+}
+
+
+containerProfile.open{
+    width:215px;
+    margin-left:0px;
+
+}
+
+.dataUserP.open{
+    display:flex;
+    margin-left:2px;
+    opacity: 1;
+    animation: fadeIn 1s forwards;
+
+}
+
+
+.sidebard.open,
+.svgside.open{
+   transition: all 0.5s ease;
+}
+.containerside.open,
+,
+.ItemName.open,
+.containerProfile.open
+{
+  opacity: 1;
+  animation: fadeIn 1s forwards;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.imgUser{
+    border-radius:20px;
+    width:40px;
+    height:40px;
+
+}

@@ -27,7 +27,7 @@ public class Users {
     private String password;
     private String fullname;
 
-    private boolean enabled;
+    private boolean Google;
     @DBRef
     private Set<Role> roles;
 
@@ -97,11 +97,11 @@ public class Users {
     }
 
     public boolean isEnabled() {
-        return enabled;
+        return Google;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setEnabled(boolean google) {
+        this.Google = google;
     }
 
     public Set<Role> getRoles() {

@@ -3,6 +3,7 @@
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
 const container = document.getElementById("container");
+const signUpGoogle = document.getElementById("btnGoogle");
 
 signUpButton.addEventListener('click', () => {
     container.classList.add("right-panel-active");
@@ -11,6 +12,14 @@ signUpButton.addEventListener('click', () => {
 signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
+
+signUpGoogle.addEventListener('click', () => {
+
+    document.getElementById('tokenid').value = tokenId;
+
+});
+
+
 
 
 
@@ -167,5 +176,23 @@ document.getElementById('registro').addEventListener('keydown', function(event) 
 
 
 
+
+function guardarDatoLocal(valor) {
+
+    // Guardar el dato en localStorage
+
+    var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/google', true);
+        xhr.setRequestHeader('Content-Type', 'text/plain');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Respuesta del servidor:', xhr.responseText);
+
+            }
+        };
+
+        xhr.send(valor);
+}
 
 

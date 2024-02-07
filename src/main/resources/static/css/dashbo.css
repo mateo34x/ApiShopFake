@@ -41,10 +41,7 @@ body {
 	box-sizing: border-box;
 }
 
-img {
-	display: block;
-	max-width: 100%;
-}
+
 
 button,
 select,
@@ -65,11 +62,11 @@ a {
 }
 
 .app {
-	min-height: 91vh;
+	min-height: 76vh;
 	width: 91%;
-	height: 156%;
+	height: 84%;
 	background-color: var(--c-gray-800);
-	padding: 2vw 4vw 6vw;
+	padding: 10px 10px 10px;
 	display: flex;
 	flex-direction: column;
 	border-radius: 25px;
@@ -133,7 +130,7 @@ a {
 		);
 
 	column-gap: 4rem;
-	padding-top: 2.5rem;
+	/*! padding-top: 2.5rem; */
 
 	@media (max-width: 1200px) {
 		grid-template-columns: 1fr;
@@ -147,11 +144,13 @@ a {
 	display: flex;
      flex-direction: column;
      justify-content: normal;
-     width: 271%;
-     height: 192%;
+     width: 100%;
+     height: 100%;
 	@media (max-width: 1200px) {
 		display: none;
 	}
+	padding-left: 30px;
+	margin-top: -14px;
 }
 
 .app-body-sidebar {
@@ -288,7 +287,7 @@ a {
 	}
 
 	span:first-child {
-		display: flex;
+		display: block ruby;
 		font-size: 1.125rem;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
@@ -542,6 +541,7 @@ a {
 .ViewAllP,
 .Photo {
     display: none;
+    transition: all 0.5s ease;
 }
 
 .dashboard.active,
@@ -550,14 +550,16 @@ a {
 .ViewAllP.active,
 .Photo.active {
     display: block;
+    transition: all 0.5s ease;
 }
 
 .content{
-top:29%;
+/*! top:29%; */
 position:absolute;
-width: 70%;
-height: 47%;
-left: 21%;
+min-width: 130vh;
+/*! height: 47%; */
+/*! left: 21%; */
+margin-top:27px;
 }
 
 

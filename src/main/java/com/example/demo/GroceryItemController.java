@@ -36,11 +36,6 @@ public class GroceryItemController {
                                      @RequestParam("uploadFile2") MultipartFile img2) throws IOException {
 
 
-        /*byte[] bytes = img1.getBytes();
-        String encodedString = Base64.getEncoder().encodeToString(bytes);
-
-        byte[] bytes2 = img2.getBytes();
-        String encodedString2 = Base64.getEncoder().encodeToString(bytes2);*/
 
         try {
 
@@ -51,7 +46,7 @@ public class GroceryItemController {
 
                     groceryItemRepo.save(new GroceryItem("OOO",name,descripcion,"$"+price,quantity,category, img1.getName(),img1.getContentType(),imageUrl1,imageUrl2 ));
 
-                    return "redirect:/view/findAll?token="+token;
+                    return "redirect:/dashboard";
 
                 } else {
                     //

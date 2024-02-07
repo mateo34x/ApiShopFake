@@ -14,9 +14,10 @@ import java.util.Map;
 public class JwtTokenUtil {
     private static final String SECRET_KEY = "c307c011160d0c0c4826f6a5eb41bbebc3c132f2528b2de9708886cb7ddd879d";
 
-    public static String generateToken(String username,String expDate) throws ParseException {
+    public static String generateToken(String username,String expDate,String access) throws ParseException {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("role", "ADMIN");
+        claims.put("access",access);
 
 
         if (expDate.isEmpty()){
@@ -57,10 +58,12 @@ public class JwtTokenUtil {
             Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
 
             Date expirationDate = claims.getBody().getExpiration();
+            String access = (String) claims.getBody().get("access");
+
             long currentTime = System.currentTimeMillis();
             long expirationTime = expirationDate.getTime();
 
-            return currentTime <= expirationTime;
+            return access.equals("full") || access.equals("create") && currentTime <= expirationTime;
         } catch (SignatureException | ExpiredJwtException e) {
 
             return false;

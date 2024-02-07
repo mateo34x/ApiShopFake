@@ -103,6 +103,8 @@ function formatCurrency(input, blur) {
 
     var successElement = document.querySelector('[data-success]');
     var errorElement = document.querySelector('[data-error]');
+    var emptyElement = document.querySelector('[data-empty]');
+    var btnSaveP = document.getElementById('saveP');
 
 
     const iconS = document.querySelector(".iconTS");
@@ -110,12 +112,21 @@ function formatCurrency(input, blur) {
 
     var isSuccess = successElement && successElement.getAttribute('data-success') === 'true';
     var isError = errorElement && errorElement.getAttribute('data-error') === 'true';
+    var isEmpty = emptyElement && emptyElement.getAttribute('data-empty') === 'true';
 
     if (isSuccess) {
        iconS.classList.add("active");
-
+       btnSaveP.disabled = false;
     }else if(isError){
+
         iconR.classList.add("active");
+        btnSaveP.disabled = true;
+    }else if(isEmpty){
+
+       iconR.classList.add("active");
+       btnSaveP.disabled = true;
     }
+
+
 
 

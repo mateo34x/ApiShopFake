@@ -40,6 +40,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public void saveUser(Users user, Tokens tokens) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setEnabled(false);
+        Role userRole = roleRepository.findByRole("ADMIN");
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        user.setTokens(Arrays.asList(tokens));
+        userRepository.save(user);
+    }
+
+
+    public void saveUserGoogle(Users user, Tokens tokens) {
         user.setEnabled(true);
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
@@ -83,15 +92,16 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
 
-    public List<Tokens> obtenerTodosLosTokens() {
+    public List<Tokens> obtenerTodosLosTokens(String correo) {
         List<Tokens> todosLosTokens = new ArrayList<>();
 
-        List<Users> usuarios = userRepository.findAll();
-        for (Users usuario : usuarios) {
+
+        Users usuario = userRepository.findItemByEmail(correo);
+
             if (usuario.getTokens() != null) {
                 todosLosTokens.addAll(usuario.getTokens());
             }
-        }
+
 
 
 

@@ -9,6 +9,12 @@ document.getElementsByClassName("container2CT")[0].classList.remove("active");
 });
 
 
+document.getElementById("cancelButton").addEventListener("click",function(){
+document.getElementsByClassName("container2CT")[0].classList.remove("active");
+
+});
+
+
 
 
 
@@ -17,9 +23,13 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const monthYear = document.getElementById("monthYear");
 const dateInput = document.getElementById("dateInput");
+const ca = document.getElementById("ca");
 const calendar = document.getElementById("calendar");
 var menu = document.getElementById('menu');
 var displayValue = menu.style.display;
+
+
+
 
 
 let currentDate = new Date();
@@ -96,13 +106,13 @@ nextBtn.addEventListener("click", () => {
   renderCalendar();
 });
 
-dateInput.addEventListener("click", () => {
+ca.addEventListener("click", () => {
   calendar.style.display = "block";
   positionCalendar();
 });
 
 document.addEventListener("click", (event) => {
-  if (!dateInput.contains(event.target) && !calendar.contains(event.target)) {
+  if (!ca.contains(event.target) && !calendar.contains(event.target)) {
     calendar.style.display = "none";
   }
 });
@@ -149,6 +159,9 @@ window.onclick = function(event) {
         ocultarMenu();
     }
 }
+
+
+
 
 
 

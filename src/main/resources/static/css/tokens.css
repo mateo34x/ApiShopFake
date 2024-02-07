@@ -349,6 +349,7 @@ background-color: #CACFD2;
   border-radius: 5px;
   cursor: pointer;
   color: antiquewhite;
+  font-size: 14px;
 }
 
 .day:hover{
@@ -372,7 +373,7 @@ color: rgba(252,253,255,.936);
     text-overflow: ellipsis;
     width: 50%;
     position: absolute;
-    margin-top: -1.5%;
+    margin-top: -2.0%;
 
 }
 
