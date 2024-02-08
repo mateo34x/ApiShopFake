@@ -463,7 +463,7 @@ public class AuthController {
                 try {
                     SendEmailResponse data = resend.emails().send(sendEmailRequest);
                     System.out.println(data.getId());
-                    return "redirect:/dashboard/v2/WelcomeFirtsTime/b";
+                    return "redirect:/dashboard/v2/WelcomeFirstsTime/b";
                 } catch (ResendException e) {
                     e.printStackTrace();
                     return login("Error");
