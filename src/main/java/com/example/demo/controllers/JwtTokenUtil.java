@@ -56,17 +56,22 @@ public class JwtTokenUtil {
     public static boolean validateToken(String token) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
-
             Date expirationDate = claims.getBody().getExpiration();
-            String access = (String) claims.getBody().get("access");
 
             long currentTime = System.currentTimeMillis();
             long expirationTime = expirationDate.getTime();
 
-            return access.equals("full") || access.equals("create") && currentTime <= expirationTime;
+            return  currentTime <= expirationTime;
         } catch (SignatureException | ExpiredJwtException e) {
 
             return false;
         }
+    }
+
+    public static boolean validateAccess(String token){
+
+        Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+        String access = (String) claims.getBody().get("access");
+        return access.equals("full");
     }
 }

@@ -1,0 +1,41 @@
+
+MES: Febrero.
+AÑO: 2024.
+
+//9
+
+     1° Migrar al nuevo servicio de correo javax.mail la parte de registro con google
+     2° Redireccionar todas la peticiones POST a peticiones GET
+
+      TODO ->  Realizado y Funcionando
+
+ //10
+     1° Implementar el inicio de sesión una sola vez sea por ip del cliente o agregando a db un estado que cambien cuando inicie sesión y finalice
+      y que este se verfique cada vez que se vaya a iniciar sesión o a finalizar sesión
+
+        1.1 al iniciar sesión comprobar siempre si el valor isActivo es false para poder dar acceso a la cuenta
+        1.2 cada vez que se inicie sesión, isActivo debe cambiar a true y al cerra cesión debe cambiar a false
+        1.3 al registrase cin google el valor isActivo se establece en true al igual manera que cuando se haga login
+
+        TODO Realizado y Funcionando
+
+//11
+
+    TODO DESCANSO
+
+//12
+
+
+    TODO -> Implementar una columna para indicar que el token está vencido
+
+
+
+
+//15
+
+    TODO -> Mirar como se le pueden agregar tallas a los productos que se creen
+    TODO -> craer punto final para poder actualizar un token cuando esté vencido
+    TODO -> Implementar un número máximo de creación de tokens
+    TODO -> Cuando el usuario intente ingresar y su estado activo sea true darle la opcion de pasarlo a false, por medio de una verificación.
+    TODO -> Implementar la opcion para editar un token tanto nombre cómo permisos y fecha de expiración
+

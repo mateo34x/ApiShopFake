@@ -187,12 +187,21 @@ function guardarDatoLocal(valor) {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log('Respuesta del servidor:', xhr.responseText);
 
             }
         };
 
         xhr.send(valor);
 }
+
+
+window.onload = function () {
+            if (window.history && window.history.pushState) {
+                window.history.pushState('', null, window.location.href);
+                window.onpopstate = function () {
+                    window.history.pushState('', null, window.location.href);
+                };
+            }
+};
 
 

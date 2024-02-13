@@ -54,3 +54,29 @@ window.onload = function () {
             }
         };
 
+
+var mensajeMostrado = false;
+
+// Función para mostrar el mensaje personalizado
+function mostrarMensaje() {
+    return '¡Espera! ';
+}
+
+// Agregar un listener para el evento beforeunload
+window.addEventListener('beforeunload', function (e) {
+    // Si el mensaje personalizado aún no se ha mostrado, mostrarlo
+    if (!mensajeMostrado) {
+        // Cancelar el evento de cierre predeterminado
+        e.preventDefault();
+        // Mostrar el mensaje personalizado
+        e.returnValue = mostrarMensaje();
+        // Marcar el mensaje como mostrado
+        mensajeMostrado = true;
+    }
+});
+
+// Agregar un listener para el evento unload
+window.addEventListener('unload', function (e) {
+    // Restablecer la variable mensajeMostrado al salir de la página
+    mensajeMostrado = false;
+});

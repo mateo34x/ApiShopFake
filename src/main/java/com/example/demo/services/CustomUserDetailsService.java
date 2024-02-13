@@ -43,6 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         user.setEnabled(false);
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        user.setActivo(false);
         user.setTokens(Arrays.asList(tokens));
         userRepository.save(user);
     }
@@ -53,6 +54,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         user.setTokens(Arrays.asList(tokens));
+        userRepository.save(user);
+    }
+
+
+    public void saveSesion(Users user) {
         userRepository.save(user);
     }
 

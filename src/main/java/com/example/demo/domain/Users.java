@@ -33,6 +33,8 @@ public class Users {
 
     private List<Tokens> tokens;
 
+    private boolean activo;
+
 
 
 
@@ -111,7 +113,12 @@ public class Users {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-    
-    
-    
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 }

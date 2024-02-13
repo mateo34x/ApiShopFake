@@ -36,7 +36,14 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 
         for (GrantedAuthority auth : authentication.getAuthorities()) {
             if ("ADMIN".equals(auth.getAuthority())) {
-                response.sendRedirect("/dashboard/v1/"+users.getId()+"/b");
+                if (users.isActivo()){
+                    response.sendRedirect("/login?code=500");
+                }else{
+                    users.setActivo(true);
+                    userService.saveSesion(users);
+                    response.sendRedirect("/dashboard/v1/"+users.getId()+"/b");
+                }
+
             }
 
         }

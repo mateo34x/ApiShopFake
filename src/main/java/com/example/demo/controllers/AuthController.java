@@ -1,44 +1,31 @@
 
 package com.example.demo.controllers;
 
-import com.example.demo.GroceryItem;
-import com.example.demo.ItemRepository;
 import com.example.demo.SecurityID.IDSe;
 import com.example.demo.UserRepository;
 import com.example.demo.domain.Tokens;
 import com.example.demo.domain.Users;
 import com.example.demo.services.CustomUserDetailsService;
-import com.resend.Resend;
-import com.resend.core.exception.ResendException;
-import com.resend.services.emails.model.SendEmailRequest;
-import com.resend.services.emails.model.SendEmailResponse;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.OAuth2AuthorizationSuccessHandler;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -72,22 +59,42 @@ public class AuthController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(@RequestParam(name = "AuthGoogle", required = false) String code) {
+    public ModelAndView login(@RequestParam(name = "code", required = false) String code) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
 
-        if (code != null && code.equals("EMAILR")) {
+        if (code != null && code.equals("01")) {
             modelAndView.addObject("emailError", true);
             modelAndView.addObject("title", "Error");
-            modelAndView.addObject("message", "email already registered");
-        } else if (code != null && code.equals("NOR")) {
+            modelAndView.addObject("message", "Email registrado, intente con otro");
+        } else if (code != null && code.equals("02")) {
             modelAndView.addObject("emailError", true);
             modelAndView.addObject("title", "Error");
-            modelAndView.addObject("message", "Account not found, Register now");
-        } else if (code != null && code.equals("Error")) {
+            modelAndView.addObject("message", "Cuenta no encontrada");
+        } else if (code != null && code.equals("03")) {
             modelAndView.addObject("emailError", true);
             modelAndView.addObject("title", "Error");
             modelAndView.addObject("message", "Error in process code:390B");
+        } else if (code!=null && code.equals("200")) {
+
+            modelAndView.addObject("success", true);
+            modelAndView.addObject("title", "YUJU");
+            modelAndView.addObject("message", "Registrado correctamente con google");
+
+        } else if (code!=null && code.equals("201")) {
+
+        modelAndView.addObject("success", true);
+        modelAndView.addObject("title", "Welcome");
+        modelAndView.addObject("message", "Registrado correctamente");
+
+        } else if (code!=null && code.equals("500")) {
+            modelAndView.addObject("emailError", true);
+            modelAndView.addObject("title", "Error");
+            modelAndView.addObject("message", "Tienes una sesión activa");
+        } else if (code!=null && code.equals("logout")) {
+            modelAndView.addObject("success", true);
+            modelAndView.addObject("title", "Adios");
+            modelAndView.addObject("message", "Has cerrado sesión correctamente");
         }
         return modelAndView;
     }
@@ -95,15 +102,13 @@ public class AuthController {
 
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView createNewUser(Users user, BindingResult bindingResult) throws ParseException {
+    public Object createNewUser(Users user, BindingResult bindingResult) throws ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         Users userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
 
-            modelAndView.addObject("emailError", true);
-            modelAndView.addObject("title", "Error");
-            modelAndView.addObject("message", "email already registered");
+            return "redirect:/login?code=01";
 
         } else {
             String token = JwtTokenUtil.generateToken(user.getEmail(), "","full");
@@ -137,31 +142,65 @@ public class AuthController {
             tokenFirts.setId(IDSe.generateUuid());
 
             userService.saveUser(user, tokenFirts);
-            modelAndView.addObject("success", true);
-            modelAndView.addObject("title", "Welcome");
-            modelAndView.addObject("message", " registered successfully");
             modelAndView.addObject("user", new Users());
             System.out.println(user.getEmail() + "\n" + user.getRoles().toString());
             modelAndView.addObject("success", true);
 
-            Resend resend = new Resend("re_7GA5sESG_KTwKznX3qTTWtxPEuWZn8Xb2");
 
-            SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
-                    .from("AdidasAPI <onboarding@resend.dev>")
-                    .to(user.getEmail())
-                    .subject("Bienvenido a AdidasAPI")
-                    .html("<p>Este es tu token de acceso para poder acceder a nuestros recursos y usarlos en tus proyectos <strong>Token: </strong></p>" + token + "<p>Es token vence en dentro de 1 minuto una vez generado luego debes generar uno nuevo</p>")
-                    .build();
+            Properties props = new Properties();
+
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+
+            String username = "adidasapifake@gmail.com";
+            String password = "boix zfxl jwto ztam";
+
+            // Crear una sesión con la autenticación
+
+            Session session = Session.getInstance(props, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            });
+
             try {
-                SendEmailResponse data = resend.emails().send(sendEmailRequest);
-                System.out.println(data.getId());
-            } catch (ResendException e) {
+                // Crear un objeto MimeMessage
+                Message message = new MimeMessage(session);
+
+                // Establecer remitente y destinatario
+                message.setFrom(new InternetAddress(username));
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
+                message.setSubject("WELCOME TO ADIDAS API");
+                String htmlBody = "<img src=\"https://res.cloudinary.com/dtljcfmr3/image/upload/v1707427892/T%C3%ADtulo_secundario_pxopk9.png\n\" alt=\"Imagen de ejemplo\">"
+                        +"<h1>¡BIENVENIDO!</h1>"
+                        + "<h2>"+"Hola "+user.getFullname()+"</h2>"
+                        + "<p>Nos alegra tu registro, esperamos ser de gran ayuda en tus proyectos.</p>"
+                        + "<p>Para comenzar a usar nuestros servicios utiliza este token, estará disponible por un día, luego deberas generar uno nuevo:</p>"
+                        + "<p style=\"font-weight: bold;\">"+token+"</p>"
+                        + "<p>por ahora eso es todo estaremos más adelante en contacto contigo, saludos.</p>"
+                        + "<p style=\"font-size: 16px; font-weight: bold; \">¡IMPOSSIBLE IS NOTHING!</p>";
+                message.setContent(htmlBody, "text/html");
+                Transport.send(message);
+
+                System.out.println("Correo enviado exitosamente.");
+                return "redirect:/login?code=201";
+
+            } catch (MessagingException e) {
                 e.printStackTrace();
-                return login("Error");
             }
-
-
         }
+
+
+
+
+
+
+
+
+
 
         return modelAndView;
 
@@ -187,10 +226,7 @@ public class AuthController {
 
         }
 
-        System.out.println(auth.getName());
-        System.out.println(user.getFullname());
-        System.out.println(user.getId());
-        System.out.println(user.getId());
+
         String username = user.getFullname();
         modelAndView.addObject("currentUser", username);
         correoFinal = user.getEmail();
@@ -201,10 +237,16 @@ public class AuthController {
             modelAndView.addObject("token", ultimoToken.getToken());
             if (JwtTokenUtil.validateToken(ultimoToken.getToken())) {
 
-                modelAndView.addObject("success", true);
+                if (JwtTokenUtil.validateAccess(ultimoToken.getToken())){
+                    modelAndView.addObject("success", true);
+                }else{
+                    modelAndView.addObject("error", true);
+                    modelAndView.addObject("info","Token sin permisos para crear productos");
+                }
+
             } else {
                 modelAndView.addObject("error", true);
-                modelAndView.addObject("info","Token sin permisos o vencido, verifique.");
+                modelAndView.addObject("info","Token vencido.");
 
             }
         } else {
@@ -383,7 +425,7 @@ public class AuthController {
 
 
     @RequestMapping(value = "/authV2", method = RequestMethod.GET)
-    public Object ResgistreOrLogin () {
+    public Object RegistreOrLogin () {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("prueba");
         modelAndView.addObject("boton", valor);
@@ -397,16 +439,21 @@ public class AuthController {
 
         if (valor.equals("login")){
             if (userExist != null){
+                if (userExist.isActivo()){
+                    return "redirect:/login?code=500";
+                }
+                userExist.setActivo(true);
+                userService.saveSesion(userExist);
                 return "redirect:/dashboard/v2/"+userExist.getId()+"/b";
             }else{
-                return login("NOR");
+                return "redirect:/login?code=02";
 
             }
 
         } else if (valor.equals("registro")) {
 
             if (userExist != null){
-                return login("EMAILR");
+                return "redirect:/login?code=01";
             }else{
 
                 String token = null;
@@ -416,6 +463,7 @@ public class AuthController {
                     throw new RuntimeException(e);
                 }
 
+                methodAuth = "v2";
                 Tokens tokenFirts = new Tokens();
                 tokenFirts.setName("Token Registre");
                 tokenFirts.setAccess("All");
@@ -448,25 +496,54 @@ public class AuthController {
                 Users users = new Users();
                 users.setEmail(emailUserGoogle);
                 users.setFullname(NameUserGoogle);
+                users.setEnabled(true);
+                users.setActivo(true);
 
-                userService.saveUserGoogle(users,tokenFirts);
+                userService.saveUserGoogle(users, tokenFirts);
+
+                Properties props = new Properties();
+
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+
+                String username = "adidasapifake@gmail.com";
+                String password = "boix zfxl jwto ztam";
 
 
-                Resend resend = new Resend("re_7GA5sESG_KTwKznX3qTTWtxPEuWZn8Xb2");
+                Session session = Session.getInstance(props, new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
 
-                SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
-                        .from("AdidasAPI <onboarding@resend.dev>")
-                        .to(emailUserGoogle)
-                        .subject("Bienvenido a AdidasAPI")
-                        .html("<p>Este es tu token de acceso para poder acceder a nuestros recursos y usarlos en tus proyectos <strong>Token: </strong></p>"+token+"<p>Es token vence en dentro de 1 minuto una vez generado luego debes generar uno nuevo</p>")
-                        .build();
                 try {
-                    SendEmailResponse data = resend.emails().send(sendEmailRequest);
-                    System.out.println(data.getId());
-                    return "redirect:/dashboard/v2/WelcomeFirstsTime/b";
-                } catch (ResendException e) {
+                    Message message = new MimeMessage(session);
+
+                    message.setFrom(new InternetAddress(username));
+                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailUserGoogle));
+                    message.setSubject("WELCOME TO ADIDAS API");
+                    String htmlBody = "<img src=\"https://res.cloudinary.com/dtljcfmr3/image/upload/v1707427892/T%C3%ADtulo_secundario_pxopk9.png\n\" alt=\"Imagen de ejemplo\">"
+                            +"<h1>¡BIENVENIDO!</h1>"
+                            + "<h2>"+"Hola "+NameUserGoogle+"</h2>"
+                            + "<p>Nos alegra tu registro, esperamos ser de gran ayuda en tus proyectos.</p>"
+                            + "<p>Para comenzar a usar nuestros servicios utiliza este token, estará disponible por un día, luego deberas generar uno nuevo:</p>"
+                            + "<p style=\"font-weight: bold;\">"+token+"</p>"
+                            + "<p>por ahora eso es todo estaremos más adelante en contacto contigo, saludos.</p>"
+                            + "<p style=\"font-size: 16px; font-weight: bold; \">¡IMPOSSIBLE IS NOTHING!</p>";
+                    message.setContent(htmlBody, "text/html");
+                    Transport.send(message);
+                    System.out.println("Correo enviado exitosamente.");
+
+                    return "redirect:/dashboard/"+methodAuth+"/"+users.getId()+"/b";
+
+
+
+                } catch (MessagingException e) {
                     e.printStackTrace();
-                    return login("Error");
+                    return "redirect:/login?code=Error";
                 }
 
             }
@@ -477,5 +554,38 @@ public class AuthController {
 
 
     }
+
+
+
+    @RequestMapping(value = "/cerrar", method = RequestMethod.POST)
+    public Object logout() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        String emailUserGoogle = null;
+        Object principal = auth.getPrincipal();
+
+        if (principal instanceof OAuth2User ){
+            OAuth2User oauth2User = (OAuth2User) auth.getPrincipal();
+            emailUserGoogle = oauth2User.getAttribute("email");
+        }
+
+        Users user = userService.findUserByEmail(auth.getName());
+
+        if (user==null){
+            user = userService.findUserByEmail(emailUserGoogle);
+        }
+
+
+        user.setActivo(false);
+        userService.saveSesion(user);
+
+
+
+
+        return "redirect:/login?code=logout";
+
+
+    }
+
 
 }

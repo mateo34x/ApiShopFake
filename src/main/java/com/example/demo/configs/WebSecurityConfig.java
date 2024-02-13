@@ -123,10 +123,6 @@ public class WebSecurityConfig  {
                                 .failureUrl("/login?error=true");
 
                     }
-                })
-                .logout(httpSecurityLogoutConfigurer ->{
-                    httpSecurityLogoutConfigurer.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                            .logoutSuccessUrl("/login");
                 });
 
 
