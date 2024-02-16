@@ -5,7 +5,6 @@ import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
@@ -24,14 +23,14 @@ public class GenerateTokenApp {
     //v2App/GeToken/mateo15rg@gmail.com
 
     @RequestMapping("/GeToken/{email}/{access}")
-    public String getToken(@PathVariable() String email,
+    public String GenerateToken(@PathVariable() String email,
                            @PathVariable() String access) throws ParseException {
 
         return JwtTokenUtil.generateToken(email,"",access);
     }
 
     @RequestMapping("/validateToken/{token}")
-    public Boolean getToken(@PathVariable() String token) throws ParseException {
+    public Boolean ValidateToken(@PathVariable() String token) throws ParseException {
 
             try {
                 Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
@@ -46,6 +45,28 @@ public class GenerateTokenApp {
                 return false;
             }
 
+
+    }
+
+    @RequestMapping("/renewToken/{token}")
+    public String RenewToken(@PathVariable() String token) throws ParseException {
+
+        try {
+            Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+
+            String userRenew = (String) claims.getBody().get("sub");
+
+            if (!userRenew.isEmpty()){
+                return JwtTokenUtil.generateToken(userRenew,"","full");
+            }
+
+
+        } catch (SignatureException | ExpiredJwtException ignored) {
+
+
+        }
+
+        return null;
 
     }
 

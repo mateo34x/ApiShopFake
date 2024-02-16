@@ -74,4 +74,7 @@ public class JwtTokenUtil {
         String access = (String) claims.getBody().get("access");
         return access.equals("full");
     }
+
+
+
 }
