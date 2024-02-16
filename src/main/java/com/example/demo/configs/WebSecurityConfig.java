@@ -99,7 +99,7 @@ public class WebSecurityConfig  {
                     }
                 })
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/login","/view/**","signup","google","/js/**", "/css/**","/images/**").permitAll()
+                        .requestMatchers("/", "/login","/view/**","/v2App**","signup","google","/js/**", "/css/**","/images/**").permitAll()
                         .requestMatchers("/dashboard/**").authenticated()
                         .anyRequest().authenticated()
                 )
