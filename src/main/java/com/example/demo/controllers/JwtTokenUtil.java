@@ -21,7 +21,7 @@ public class JwtTokenUtil {
 
 
         if (expDate.isEmpty()){
-            long expirationTime = System.currentTimeMillis() + 24*60*60*1000;
+            long expirationTime = System.currentTimeMillis() + 5*60*1000;
             claims.put("exp", expirationTime / 1000);
         }else{
 
