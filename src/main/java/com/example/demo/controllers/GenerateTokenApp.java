@@ -54,8 +54,10 @@ public class GenerateTokenApp {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
             String userRenew = (String) claims.getBody().get("sub");
-            return JwtTokenUtil.generateToken(userRenew,"","full");
+            return JwtTokenUtil.generateToken(userRenew, "", "full");
 
+        }catch (SignatureException e){
+            return "Error";
         } catch (ExpiredJwtException ignored) {
             Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
             String userRenew = (String) claims.getBody().get("sub");
