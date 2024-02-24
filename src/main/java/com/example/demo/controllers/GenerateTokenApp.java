@@ -62,7 +62,7 @@ public class GenerateTokenApp {
 
 
         } catch (SignatureException | ExpiredJwtException ignored) {
-            return null;
+            return "Error";
         }
 
 
