@@ -51,15 +51,16 @@ public class GenerateTokenApp {
     @RequestMapping("/renewToken/{token}")
     public String RenewToken(@PathVariable() String token) throws ParseException {
 
+        String userRenew = "default";
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
-            String userRenew = (String) claims.getBody().get("sub");
+            userRenew = (String) claims.getBody().get("sub");
             return JwtTokenUtil.generateToken(userRenew, "", "full");
 
         }catch (SignatureException e){
             return "Error1";
         } catch (ExpiredJwtException ignored) {
-            return "Error2";
+            return "Error2: "+userRenew;
         }
 
 
