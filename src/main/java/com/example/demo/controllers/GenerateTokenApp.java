@@ -52,12 +52,8 @@ public class GenerateTokenApp {
     public String RenewToken(@PathVariable() String token) throws ParseException {
 
         try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
 
-            String userRenew = (String) claims.getBody().get("sub");
-
-
-            return JwtTokenUtil.generateToken(userRenew,"","full");
+            return JwtTokenUtil.generateToken("userRenew@gmail.com","","full");
 
 
 
