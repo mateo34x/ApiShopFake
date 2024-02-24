@@ -56,17 +56,16 @@ public class GenerateTokenApp {
 
             String userRenew = (String) claims.getBody().get("sub");
 
-            if (!userRenew.isEmpty()){
-                return JwtTokenUtil.generateToken(userRenew,"","full");
-            }
+
+            return JwtTokenUtil.generateToken(userRenew,"","full");
+
 
 
         } catch (SignatureException | ExpiredJwtException ignored) {
-
-
+            return null;
         }
 
-        return null;
+
 
     }
 
